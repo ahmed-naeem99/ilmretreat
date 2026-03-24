@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
-import { appendToSheet } from "@/lib/sheets";
+import { appendToAirtable } from "@/lib/airtable";
 
 export const dynamic = "force-dynamic";
 
@@ -34,10 +34,10 @@ export async function POST(req: NextRequest) {
     const paidAt = new Date().toISOString();
 
     try {
-      await appendToSheet({ name, email, gender, paidAt, status: "Paid" });
+      await appendToAirtable({ name, email, gender, paidAt, status: "Paid" });
       console.log(`Registered: ${name} (${email})`);
     } catch (err) {
-      console.error("Failed to write to Google Sheet:", err);
+      console.error("Failed to write to Airtable:", err);
       // Don't return 500 — Stripe will retry. Log and move on.
     }
   }
