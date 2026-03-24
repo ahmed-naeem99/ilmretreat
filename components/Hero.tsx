@@ -36,10 +36,11 @@ export default function Hero() {
 
           {/* Main title */}
           <motion.h1
-            className="text-7xl lg:text-8xl xl:text-9xl font-black leading-none tracking-tight mb-6"
+            className="text-7xl lg:text-8xl xl:text-9xl font-black leading-none tracking-tight mb-5"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            style={{ fontFamily: "var(--font-heading)" }}
           >
             <span className="block text-white glow-text">ILM</span>
             <span className="block bg-gradient-to-r from-blue-400 via-blue-300 to-white bg-clip-text text-transparent">
@@ -47,31 +48,45 @@ export default function Hero() {
             </span>
           </motion.h1>
 
-          {/* Subtitle line */}
+          {/* Theme line — English */}
           <motion.div
-            className="flex items-center gap-4 mb-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.7, duration: 0.6 }}
+            className="mb-3"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.65, duration: 0.7 }}
           >
-            <div className="h-px flex-1 max-w-[60px] bg-gradient-to-r from-blue-400 to-transparent" />
-            <p className="text-blue-300/70 text-sm font-medium tracking-[0.15em] uppercase">
-              A Day of Knowledge & Reflection
+            <p className="text-white/70 text-base lg:text-lg font-medium">
+              The Quran: An Explanation of All Things
+            </p>
+          </motion.div>
+
+          {/* Theme line — Arabic */}
+          <motion.div
+            className="mb-8"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.75, duration: 0.7 }}
+          >
+            <p
+              className="text-blue-300/80 text-xl lg:text-2xl"
+              style={{ fontFamily: "var(--font-arabic)", direction: "rtl" }}
+            >
+              تِبْيَانًا لِكُلِّ شَيْءٍ
             </p>
           </motion.div>
 
           {/* Event meta */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 mb-10"
+            className="flex flex-col sm:flex-row gap-3 mb-10"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.6 }}
+            transition={{ delay: 0.85, duration: 0.6 }}
           >
             <div className="glass-card neon-border rounded-xl px-5 py-3 flex items-center gap-3">
               <svg className="w-4 h-4 text-blue-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
-              <span className="text-sm text-white/80">Coming Soon — 2025</span>
+              <span className="text-sm text-white/80 font-medium">May 2nd, 2025</span>
             </div>
             <div className="glass-card neon-border rounded-xl px-5 py-3 flex items-center gap-3">
               <svg className="w-4 h-4 text-blue-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -111,10 +126,10 @@ export default function Hero() {
         </motion.div>
 
         {/* Right: Floating Minaret */}
-        <div className="relative flex justify-center items-center order-1 lg:order-2 h-[50vh] lg:h-screen">
+        <div className="relative flex justify-center items-center order-1 lg:order-2 h-[55vh] lg:h-screen">
           {/* Glow behind minaret */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="w-64 h-64 lg:w-96 lg:h-96 bg-blue-500/10 rounded-full blur-[80px]" />
+            <div className="w-80 h-80 lg:w-[500px] lg:h-[500px] bg-blue-500/10 rounded-full blur-[100px]" />
           </div>
 
           {/* Floating minaret */}
@@ -126,10 +141,10 @@ export default function Hero() {
             <Image
               src="/big_minaret.png"
               alt="Minaret"
-              width={420}
-              height={620}
-              className="w-[260px] lg:w-[360px] xl:w-[420px] object-contain"
-              style={{ filter: "drop-shadow(0 0 60px rgba(74,158,255,0.45)) drop-shadow(0 0 20px rgba(74,158,255,0.2))" }}
+              width={560}
+              height={820}
+              className="w-[300px] lg:w-[440px] xl:w-[520px] object-contain"
+              style={{ filter: "drop-shadow(0 0 80px rgba(74,158,255,0.5)) drop-shadow(0 0 30px rgba(74,158,255,0.25))" }}
               priority
             />
           </motion.div>
@@ -140,14 +155,14 @@ export default function Hero() {
             animate={{ rotate: 360 }}
             transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
           >
-            <div className="w-[300px] lg:w-[420px] h-[300px] lg:h-[420px] rounded-full border border-blue-400/10" />
+            <div className="w-[320px] lg:w-[480px] h-[320px] lg:h-[480px] rounded-full border border-blue-400/10" />
           </motion.div>
           <motion.div
             className="absolute inset-0 flex items-center justify-center pointer-events-none"
             animate={{ rotate: -360 }}
-            transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
+            transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
           >
-            <div className="w-[380px] lg:w-[520px] h-[380px] lg:h-[520px] rounded-full border border-blue-400/5" />
+            <div className="w-[400px] lg:w-[600px] h-[400px] lg:h-[600px] rounded-full border border-blue-400/5" />
           </motion.div>
         </div>
       </div>

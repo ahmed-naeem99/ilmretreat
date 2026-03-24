@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import Hero from "@/components/Hero";
+import PurposeSection from "@/components/PurposeSection";
 import InfoSection from "@/components/InfoSection";
 import Speakers from "@/components/Speakers";
 import Sponsors from "@/components/Sponsors";
@@ -14,6 +15,7 @@ export default function Home() {
         <SuccessOverlay />
       </Suspense>
       <Hero />
+      <PurposeSection />
       <InfoSection />
       <Speakers />
       <Sponsors />
