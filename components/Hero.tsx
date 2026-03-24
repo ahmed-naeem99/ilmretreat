@@ -143,7 +143,7 @@ export default function Hero() {
               alt="Minaret"
               width={560}
               height={820}
-              className="w-[300px] lg:w-[440px] xl:w-[520px] object-contain"
+              className="w-[340px] lg:w-[500px] xl:w-[620px] object-contain"
               style={{ filter: "drop-shadow(0 0 80px rgba(74,158,255,0.5)) drop-shadow(0 0 30px rgba(74,158,255,0.25))" }}
               priority
             />

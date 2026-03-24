@@ -17,7 +17,7 @@ export default function Sponsors() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative py-24 bg-grid">
+    <section className="relative py-12 lg:py-16 bg-grid">
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
 
         {/* TMU Logo + Presented by */}
@@ -77,18 +77,6 @@ export default function Sponsors() {
             </motion.div>
           ))}
 
-          {/* Become a sponsor CTA */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.85 }}
-            animate={inView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="rounded-xl px-8 py-5 flex items-center gap-3 border border-dashed border-white/10 hover:border-blue-400/30 transition-colors duration-300 cursor-pointer group"
-          >
-            <div className="w-8 h-8 rounded-lg border border-dashed border-white/10 group-hover:border-blue-400/30 flex items-center justify-center transition-colors">
-              <span className="text-white/30 group-hover:text-blue-400 text-lg leading-none transition-colors">+</span>
-            </div>
-            <span className="text-white/30 group-hover:text-white/50 text-sm font-medium transition-colors">Become a Sponsor</span>
-          </motion.div>
         </div>
       </div>
     </section>

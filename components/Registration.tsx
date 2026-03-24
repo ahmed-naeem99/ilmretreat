@@ -46,7 +46,7 @@ export default function Registration() {
   };
 
   return (
-    <section id="register" className="relative py-32 bg-grid">
+    <section id="register" className="relative py-16 lg:py-24 bg-grid">
       {/* Glow */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div className="w-[600px] h-[400px] bg-blue-500/5 rounded-full blur-[120px]" />

@@ -56,7 +56,7 @@ export default function InfoSection() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="info" className="relative py-32 bg-grid">
+    <section id="info" className="relative py-16 lg:py-24 bg-grid">
       <div className="absolute inset-0 radial-glow pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
