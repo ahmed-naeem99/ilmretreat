@@ -86,14 +86,14 @@ export default function Hero() {
               <svg className="w-4 h-4 text-blue-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
-              <span className="text-sm text-white/80 font-medium">May 2nd, 2025</span>
+              <span className="text-sm text-white/80 font-medium">May 3rd, 2026 · 10:30AM – 9PM</span>
             </div>
             <div className="glass-card neon-border rounded-xl px-5 py-3 flex items-center gap-3">
               <svg className="w-4 h-4 text-blue-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
-              <span className="text-sm text-white/80">Toronto Metropolitan University</span>
+              <span className="text-sm text-white/80">Sears Atrium, George Vari — 245 Church St</span>
             </div>
           </motion.div>
 

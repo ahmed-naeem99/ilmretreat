@@ -71,7 +71,7 @@ export default function InfoSection() {
             The <span className="text-blue-400">Day</span>
           </h2>
           <p className="text-white/50 text-lg max-w-xl mb-16">
-            May 2nd, 2025 — A full-day experience designed to reconnect you with the Qur'an through knowledge, reflection, and community.
+            May 3rd, 2026 · 10:30AM – 9PM — A full-day immersive experience designed to reconnect you with the Qur'an through knowledge, reflection, and community.
           </p>
         </FadeUp>
 
@@ -110,7 +110,7 @@ export default function InfoSection() {
             <span className="w-8 h-8 rounded-lg bg-blue-500/20 border border-blue-400/30 flex items-center justify-center text-sm">
               📅
             </span>
-            Schedule — May 2nd
+            Schedule — May 3rd
           </h3>
         </FadeUp>
 
@@ -147,19 +147,42 @@ export default function InfoSection() {
           </div>
         </div>
 
-        {/* Location */}
+        {/* Location + Food row */}
         <FadeUp delay={0.2}>
-          <div className="mt-16 glass-card neon-border rounded-3xl p-8 flex flex-col sm:flex-row items-start sm:items-center gap-6">
-            <div className="w-14 h-14 rounded-2xl bg-blue-500/20 border border-blue-400/30 flex items-center justify-center shrink-0">
-              <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
+          <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {/* Location */}
+            <div className="glass-card neon-border rounded-3xl p-8 flex items-start gap-6">
+              <div className="w-14 h-14 rounded-2xl bg-blue-500/20 border border-blue-400/30 flex items-center justify-center shrink-0">
+                <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <div>
+                <div className="text-xs text-blue-400 tracking-widest uppercase mb-1">Venue</div>
+                <div className="text-white font-bold text-lg leading-snug">Sears Atrium</div>
+                <div className="text-white/60 text-sm mt-0.5 font-medium">George Vari Engineering and Computing Centre</div>
+                <div className="text-white/40 text-xs mt-1">245 Church St, Toronto, ON M5B 2R2</div>
+                <div className="text-white/40 text-xs mt-0.5">10:30 AM – 9:00 PM</div>
+              </div>
             </div>
-            <div>
-              <div className="text-xs text-blue-400 tracking-widest uppercase mb-1">Location</div>
-              <div className="text-white font-bold text-xl">Toronto Metropolitan University</div>
-              <div className="text-white/50 text-sm mt-1">350 Victoria St, Toronto, ON — Venue TBA</div>
+
+            {/* Food */}
+            <div className="glass-card neon-border rounded-3xl p-8 flex items-start gap-6">
+              <div className="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-400/20 flex items-center justify-center shrink-0 text-xl">
+                🍽️
+              </div>
+              <div>
+                <div className="text-xs text-amber-400/80 tracking-widest uppercase mb-1">Food & Refreshments</div>
+                <div className="text-white font-bold text-lg mb-2">All-Inclusive</div>
+                <div className="flex flex-wrap gap-2">
+                  {["Breakfast", "Lunch", "Dinner", "Refreshments"].map((item) => (
+                    <span key={item} className="text-xs bg-amber-500/10 border border-amber-400/20 text-amber-300/80 px-3 py-1 rounded-full">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </FadeUp>
