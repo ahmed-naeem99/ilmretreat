@@ -25,14 +25,14 @@ function FloatingBubble({ text, className, delay, duration }: (typeof bubbles)[0
       <motion.div
         animate={{ y: [0, -10, 0] }}
         transition={{ duration, repeat: Infinity, ease: "easeInOut", delay }}
-        className="glass-card neon-border rounded-full px-4 py-2.5 flex items-center gap-2.5 whitespace-nowrap backdrop-blur-md"
+        className="glass-card neon-border rounded-full px-5 py-3 flex items-center gap-3 whitespace-nowrap backdrop-blur-md"
       >
         <motion.span
           animate={{ opacity: [0.5, 1, 0.5] }}
           transition={{ duration: duration * 0.7, repeat: Infinity, ease: "easeInOut" }}
-          className="w-2 h-2 rounded-full bg-blue-400 shrink-0"
+          className="w-2.5 h-2.5 rounded-full bg-blue-400 shrink-0"
         />
-        <span className="text-white/80 text-xs lg:text-sm font-medium">{text}</span>
+        <span className="text-white/85 text-sm lg:text-base font-medium">{text}</span>
       </motion.div>
     </motion.div>
   );
@@ -78,8 +78,14 @@ export default function PurposeSection() {
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.7, delay: 0.25 }}
-            className="text-blue-300/70 text-2xl lg:text-3xl mb-10 text-center"
-            style={{ fontFamily: "var(--font-arabic)", direction: "rtl" }}
+            className="text-blue-300/70 text-3xl lg:text-4xl mb-10 text-center"
+            style={{
+              fontFamily: "var(--font-arabic)",
+              direction: "rtl",
+              letterSpacing: "0.08em",
+              wordSpacing: "0.3em",
+              lineHeight: "2",
+            }}
           >
             تِبْيَانًا لِكُلِّ شَيْءٍ
           </motion.p>

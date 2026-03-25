@@ -60,27 +60,12 @@ export default function Hero() {
             </p>
           </motion.div>
 
-          {/* Theme line — Arabic */}
-          <motion.div
-            className="mb-8"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.75, duration: 0.7 }}
-          >
-            <p
-              className="text-blue-300/80 text-xl lg:text-2xl"
-              style={{ fontFamily: "var(--font-arabic)", direction: "rtl" }}
-            >
-              تِبْيَانًا لِكُلِّ شَيْءٍ
-            </p>
-          </motion.div>
-
           {/* Event meta */}
           <motion.div
             className="flex flex-col sm:flex-row gap-3 mb-10"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.85, duration: 0.6 }}
+            transition={{ delay: 0.75, duration: 0.6 }}
           >
             <div className="glass-card neon-border rounded-xl px-5 py-3 flex items-center gap-3">
               <svg className="w-4 h-4 text-blue-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
