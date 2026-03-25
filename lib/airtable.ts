@@ -2,7 +2,6 @@ interface RegistrationRow {
   name: string;
   email: string;
   gender: string;
-  paidAt: string;
   status: string;
 }
 
@@ -22,7 +21,6 @@ export async function appendToAirtable(row: RegistrationRow) {
         Name: row.name,
         Email: row.email,
         Gender: row.gender,
-        "Paid At": row.paidAt,
         Status: row.status,
       },
     }),

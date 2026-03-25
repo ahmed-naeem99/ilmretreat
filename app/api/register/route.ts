@@ -11,17 +11,12 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "All fields are required." }, { status: 400 });
     }
 
-    await appendToAirtable({
-      name,
-      email,
-      gender,
-      paidAt: "",
-      status: "Pending Payment",
-    });
+    await appendToAirtable({ name, email, gender, status: "Pending Payment" });
 
     return NextResponse.json({ ok: true });
   } catch (err) {
-    console.error("Registration error:", err);
-    return NextResponse.json({ error: "Something went wrong. Please try again." }, { status: 500 });
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("Registration error:", message);
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }
