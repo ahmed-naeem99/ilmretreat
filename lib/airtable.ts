@@ -21,7 +21,7 @@ export async function appendToAirtable(row: RegistrationRow) {
         Email: row.email,
         Gender: row.gender,
         Status: "Pending Payment",
-        "Paid At": "",
+        "Paid at": "",
       },
     }),
   });
