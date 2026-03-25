@@ -91,9 +91,13 @@ export default function PurposeSection() {
           </motion.p>
 
           {/* Quran + floating pills */}
-          <div className="relative w-full flex justify-center items-center min-h-[500px] lg:min-h-[600px]">
+          {/* Desktop: floating bubbles around Quran | Mobile: Quran + pill grid below */}
+          <div className="relative w-full flex justify-center items-center min-h-[300px] lg:min-h-[600px]">
+            {/* Bubbles — desktop only */}
             {bubbles.map((b) => (
-              <FloatingBubble key={b.text} {...b} />
+              <div key={b.text} className="hidden lg:block">
+                <FloatingBubble {...b} />
+              </div>
             ))}
 
             {/* Glowing Quran */}
@@ -127,6 +131,22 @@ export default function PurposeSection() {
                 />
               </motion.div>
             </motion.div>
+          </div>
+
+          {/* Mobile-only: bubbles as a pill grid */}
+          <div className="lg:hidden mt-6 flex flex-wrap justify-center gap-2.5 px-2">
+            {bubbles.map((b, i) => (
+              <motion.div
+                key={b.text}
+                initial={{ opacity: 0, scale: 0.85 }}
+                animate={inView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ delay: 0.3 + i * 0.07, duration: 0.5 }}
+                className="glass-card neon-border rounded-full px-4 py-2 flex items-center gap-2"
+              >
+                <span className="w-2 h-2 rounded-full bg-blue-400 shrink-0" />
+                <span className="text-white/75 text-sm font-medium">{b.text}</span>
+              </motion.div>
+            ))}
           </div>
 
           {/* Purpose text */}

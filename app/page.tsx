@@ -2,8 +2,6 @@ import { Suspense } from "react";
 import Hero from "@/components/Hero";
 import PurposeSection from "@/components/PurposeSection";
 import InfoSection from "@/components/InfoSection";
-import Speakers from "@/components/Speakers";
-import Sponsors from "@/components/Sponsors";
 import Registration from "@/components/Registration";
 import Footer from "@/components/Footer";
 import SuccessOverlay from "@/components/SuccessOverlay";
@@ -17,8 +15,7 @@ export default function Home() {
       <Hero />
       <PurposeSection />
       <InfoSection />
-      <Speakers />
-      <Sponsors />
+      {/* Speakers and Sponsors hidden until confirmed */}
       <Registration />
       <Footer />
     </main>

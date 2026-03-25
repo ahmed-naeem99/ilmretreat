@@ -76,9 +76,10 @@ export default function Registration() {
             <div className="space-y-3">
               {[
                 "Access to all sessions",
-                "Breakfast & Lunch included",
+                "Breakfast, Lunch & Dinner included",
                 "Prayer accommodations",
-                "Access to recordings",
+                "Access to luminary scholars",
+                "Islamic programs & seminaries",
               ].map((item, i) => (
                 <motion.div
                   key={item}
@@ -98,9 +99,13 @@ export default function Registration() {
             </div>
 
             <div className="mt-10 pt-8 border-t border-white/5">
-              <div className="flex items-baseline gap-2">
+              <div className="flex items-baseline gap-3 mb-1">
                 <span className="text-5xl font-black text-white">$15</span>
                 <span className="text-white/30 text-sm">CAD / person</span>
+              </div>
+              <div className="inline-flex items-center gap-2 bg-blue-500/15 border border-blue-400/25 rounded-full px-3 py-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+                <span className="text-blue-300 text-xs font-medium tracking-wide">Early Bird Pricing</span>
               </div>
             </div>
           </motion.div>

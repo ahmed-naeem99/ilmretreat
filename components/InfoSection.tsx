@@ -3,16 +3,99 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
-const schedule = [
-  { time: "10:00 – 10:45", title: "Breakfast", icon: "🥐", desc: "Drinks, croissants — settle in and connect", type: "break" },
-  { time: "11:00 – 12:20", title: "Session 1", icon: "📖", desc: "Keynote speakers — lecture + Q&A", type: "session" },
-  { time: "12:40 – 2:00", title: "Session 2", icon: "🎙️", desc: "Keynote speakers — lecture + Q&A", type: "session" },
-  { time: "2:00 – 3:30", title: "Dhuhr + Lunch", icon: "🕌", desc: "Prayer, vendors & exhibition", type: "prayer" },
-  { time: "3:30 – 4:45", title: "Parallel Sessions", icon: "⚡", desc: "Interactive discussion — two tracks running simultaneously", type: "parallel" },
-  { time: "5:00 – 6:00", title: "Panel Discussion", icon: "💡", desc: "Session 3 — panel with speakers", type: "session" },
-  { time: "6:00 – 6:30", title: "Asr Prayer", icon: "🌤️", desc: "Congregational Asr", type: "prayer" },
-  { time: "6:30 – 7:15", title: "Closing Ceremony", icon: "📿", desc: "Quran recitation, closing remarks & trivia", type: "session" },
-  { time: "7:15+", title: "Dinner + Maghrib", icon: "🌙", desc: "Evening meal and Maghrib prayer to close the day", type: "prayer" },
+type ScheduleItem = {
+  time: string;
+  title: string;
+  icon: string;
+  desc: string;
+  type: string;
+  speakers?: string[];
+  tracks?: { title: string; speakers: string[] }[];
+};
+
+const schedule: ScheduleItem[] = [
+  {
+    time: "10:00 – 10:45 AM",
+    title: "Session 1 — Introduction",
+    icon: "📖",
+    desc: "Opening lecture",
+    type: "session",
+    speakers: ["Shaykh Adil Mannan", "Shaykh Ammar"],
+  },
+  {
+    time: "11:00 AM – 12:20 PM",
+    title: "Session 2 — Intro to Uloom al-Quran",
+    icon: "📖",
+    desc: "The sciences of the Quran",
+    type: "session",
+    speakers: ["Shaykh Ammar J.", "Shaykh Adil Mannan"],
+  },
+  {
+    time: "12:40 – 2:00 PM",
+    title: "Session 3 — Intro to Tadabur & Tafsir",
+    icon: "📖",
+    desc: "Deep reflection and Quranic exegesis",
+    type: "session",
+    speakers: ["Dr. Fadel Suliman", "Dr. Amjad Qourshah", "Shaykh Waleed"],
+  },
+  {
+    time: "2:30 – 3:30 PM",
+    title: "Dhuhr + Lunch",
+    icon: "🕌",
+    desc: "Congregational Dhuhr prayer, vendors & exhibition",
+    type: "prayer",
+  },
+  {
+    time: "3:30 – 4:30 PM",
+    title: "Parallel Session 1",
+    icon: "⚡",
+    desc: "Two simultaneous tracks",
+    type: "parallel",
+    tracks: [
+      { title: "The Eternal Challenge", speakers: ["Adil Mannan", "Samir Hussain"] },
+      { title: "Seerah as told by the Quran", speakers: ["Ahmad Wardak", "Sh. Usman Qamar"] },
+    ],
+  },
+  {
+    time: "4:45 – 5:45 PM",
+    title: "Parallel Session 2",
+    icon: "⚡",
+    desc: "Two simultaneous tracks",
+    type: "parallel",
+    tracks: [
+      { title: "Towards Quranic Civilization", speakers: ["Dr. Ali Halawani", "Shaykh Nouman Attique"] },
+      { title: "Khuluq al-Quran", speakers: ["Muhammad Zahid", "Sh. Syed Hassan"] },
+    ],
+  },
+  {
+    time: "5:45 – 6:15 PM",
+    title: "Asr + Refreshments",
+    icon: "🌤️",
+    desc: "Congregational Asr prayer and refreshments",
+    type: "prayer",
+  },
+  {
+    time: "6:15 – 6:30 PM",
+    title: "Session 4 — Qira'at",
+    icon: "📿",
+    desc: "Recitation",
+    type: "session",
+    speakers: ["Shaykh Fahim Mannan"],
+  },
+  {
+    time: "6:30 – 7:30 PM",
+    title: "Session 5 — Panel Discussion",
+    icon: "💡",
+    desc: "Closing panel with our speakers",
+    type: "session",
+  },
+  {
+    time: "7:30 PM+",
+    title: "Dinner + Maghrib",
+    icon: "🌙",
+    desc: "Evening meal and Maghrib prayer to close the day",
+    type: "prayer",
+  },
 ];
 
 const typeColors: Record<string, string> = {
@@ -31,9 +114,9 @@ const typeBg: Record<string, string> = {
 
 const stats = [
   { label: "Full Day", value: "9h+" },
-  { label: "Speakers", value: "5" },
+  { label: "Speakers", value: "10+" },
   { label: "Attendees Expected", value: "200+" },
-  { label: "Admission", value: "$15" },
+  { label: "Early Bird", value: "$15" },
 ];
 
 function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -132,14 +215,40 @@ export default function InfoSection() {
                   {item.icon}
                 </div>
 
-                <div className="flex-1 glass-card neon-border rounded-2xl px-5 py-4 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
+                <div className="flex-1 glass-card neon-border rounded-2xl px-5 py-4 flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-6">
                   <span className={`font-mono text-sm font-medium w-28 shrink-0 ${typeColors[item.type]}`}>{item.time}</span>
                   <div className="flex-1">
-                    <span className="text-white font-semibold text-sm">{item.title}</span>
-                    {item.type === "parallel" && (
-                      <span className="ml-2 text-xs bg-purple-500/15 border border-purple-400/20 text-purple-300 px-2 py-0.5 rounded-full">2 tracks</span>
+                    <div className="flex flex-wrap items-center gap-2 mb-1">
+                      <span className="text-white font-semibold text-sm">{item.title}</span>
+                      {item.type === "parallel" && (
+                        <span className="text-xs bg-purple-500/15 border border-purple-400/20 text-purple-300 px-2 py-0.5 rounded-full">2 tracks</span>
+                      )}
+                    </div>
+                    {/* Regular speakers */}
+                    {item.speakers && item.speakers.length > 0 && (
+                      <div className="flex flex-wrap gap-1.5 mt-1">
+                        {item.speakers.map((s) => (
+                          <span key={s} className="text-xs text-blue-300/70 bg-blue-500/10 border border-blue-400/15 px-2 py-0.5 rounded-full">
+                            {s}
+                          </span>
+                        ))}
+                      </div>
                     )}
-                    <span className="text-white/40 text-xs ml-3 hidden sm:inline">{item.desc}</span>
+                    {/* Parallel tracks */}
+                    {item.tracks && (
+                      <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        {item.tracks.map((track) => (
+                          <div key={track.title} className="bg-purple-500/8 border border-purple-400/15 rounded-xl px-3 py-2">
+                            <div className="text-purple-200/80 text-xs font-medium mb-1">{track.title}</div>
+                            <div className="flex flex-wrap gap-1">
+                              {track.speakers.map((s) => (
+                                <span key={s} className="text-xs text-white/40">{s}</span>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               </motion.div>
