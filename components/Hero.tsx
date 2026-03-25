@@ -19,48 +19,59 @@ export default function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* Tag */}
+          {/* Tag with MSA logo */}
           <motion.div
             className="inline-flex items-center gap-2 mb-8 w-fit"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
-            <div className="glass-card neon-border rounded-full px-4 py-1.5 flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+            <div className="glass-card neon-border rounded-full px-4 py-1.5 flex items-center gap-3">
+              <Image
+                src="/dark_msa.png"
+                alt="TMU MSA"
+                width={24}
+                height={24}
+                className="w-5 h-5 object-contain rounded-sm"
+                style={{ mixBlendMode: "screen" }}
+              />
+              <span className="w-px h-3 bg-white/10" />
               <span className="text-xs font-medium tracking-[0.2em] uppercase text-blue-300">
                 TMU MSA Presents
               </span>
             </div>
           </motion.div>
 
-          {/* Main title */}
+          {/* Main title — Anton */}
           <motion.h1
-            className="text-7xl lg:text-8xl xl:text-9xl font-black leading-none tracking-tight mb-5"
+            className="leading-none mb-5"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            style={{ fontFamily: "var(--font-heading)" }}
+            style={{ fontFamily: "var(--font-display)" }}
           >
-            <span className="block text-white glow-text">ILM</span>
-            <span className="block bg-gradient-to-r from-blue-400 via-blue-300 to-white bg-clip-text text-transparent">
+            <span className="block text-white glow-text text-8xl lg:text-9xl xl:text-[10rem]">ILM</span>
+            <span
+              className="block text-8xl lg:text-9xl xl:text-[10rem] bg-gradient-to-r from-blue-400 via-blue-300 to-white bg-clip-text text-transparent"
+            >
               RETREAT
             </span>
           </motion.h1>
 
-          {/* Theme line — English */}
+          {/* Theme line */}
           <motion.div
-            className="mb-3"
+            className="mb-8"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.65, duration: 0.7 }}
           >
-            <p className="text-white/70 text-base lg:text-lg font-medium">
+            <p className="text-white/60 text-base lg:text-lg tracking-wide"
+               style={{ fontFamily: "'Glacial Indifference', sans-serif" }}>
               The Quran: An Explanation of All Things
             </p>
           </motion.div>
 
-          {/* Event meta */}
+          {/* Event meta chips */}
           <motion.div
             className="flex flex-col sm:flex-row gap-3 mb-10"
             initial={{ opacity: 0, y: 20 }}
@@ -71,7 +82,7 @@ export default function Hero() {
               <svg className="w-4 h-4 text-blue-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
-              <span className="text-sm text-white/80 font-medium">May 3rd, 2026 · 10:30AM – 9PM</span>
+              <span className="text-sm text-white/80">May 3rd, 2026 · 10:30AM – 9PM</span>
             </div>
             <div className="glass-card neon-border rounded-xl px-5 py-3 flex items-center gap-3">
               <svg className="w-4 h-4 text-blue-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -92,6 +103,7 @@ export default function Hero() {
             <a
               href="#register"
               className="group relative overflow-hidden bg-blue-500 hover:bg-blue-400 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 flex items-center gap-2 text-sm tracking-wide"
+              style={{ fontFamily: "'Glacial Indifference', sans-serif" }}
             >
               <span>Register Now — $15</span>
               <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -112,12 +124,10 @@ export default function Hero() {
 
         {/* Right: Floating Minaret */}
         <div className="relative flex justify-center items-center order-1 lg:order-2 h-[55vh] lg:h-screen">
-          {/* Glow behind minaret */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div className="w-80 h-80 lg:w-[500px] lg:h-[500px] bg-blue-500/10 rounded-full blur-[100px]" />
           </div>
 
-          {/* Floating minaret */}
           <motion.div
             animate={{ y: [0, -16, 0] }}
             transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
@@ -129,12 +139,11 @@ export default function Hero() {
               width={560}
               height={820}
               className="w-[340px] lg:w-[500px] xl:w-[620px] object-contain"
-              style={{ filter: "drop-shadow(0 0 80px rgba(74,158,255,0.5)) drop-shadow(0 0 30px rgba(74,158,255,0.25))" }}
+              style={{ filter: "drop-shadow(0 0 80px rgba(96,166,195,0.5)) drop-shadow(0 0 30px rgba(96,166,195,0.25))" }}
               priority
             />
           </motion.div>
 
-          {/* Orbit rings */}
           <motion.div
             className="absolute inset-0 flex items-center justify-center pointer-events-none"
             animate={{ rotate: 360 }}

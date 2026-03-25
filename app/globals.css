@@ -1,55 +1,78 @@
 @import "tailwindcss";
 
-:root {
-  --background: #050b18;
-  --foreground: #ffffff;
-  --navy: #0e1a2e;
-  --navy-light: #1a2f4a;
-  --accent: #4a9eff;
-  --accent-dim: rgba(74, 158, 255, 0.15);
-  --glass: rgba(14, 26, 46, 0.6);
-  --glass-border: rgba(74, 158, 255, 0.15);
+/* ─── Glacial Indifference ───────────────────────────────── */
+@font-face {
+  font-family: "Glacial Indifference";
+  src: url("/fonts/GlacialIndifference-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Glacial Indifference";
+  src: url("/fonts/GlacialIndifference-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 
+/* ─── Brand tokens ───────────────────────────────────────── */
+:root {
+  --background:   #08152B;
+  --foreground:   #ffffff;
+  --accent:       #60A6C3;
+  --accent-light: #A0C3CB;
+  --accent-mid:   #6B9EB4;
+  --navy:         #213771;
+  --navy-deep:    #323E64;
+  --accent-dim:   rgba(96, 166, 195, 0.15);
+  --glass:        rgba(33, 55, 113, 0.35);
+  --glass-border: rgba(96, 166, 195, 0.15);
+}
+
+/* ─── Tailwind theme overrides ───────────────────────────── */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-body);
-  --font-display: var(--font-heading);
+  --font-sans:    var(--font-body);
+  --font-display: var(--font-display);
+  --font-heading: var(--font-heading);
+
+  /* Map Tailwind's blue scale → brand teal palette */
+  --color-blue-300: #A0C3CB;
+  --color-blue-400: #6B9EB4;
+  --color-blue-500: #60A6C3;
+  --color-blue-600: #4a8fa8;
+  --color-blue-800: #213771;
+  --color-blue-900: #1a2d5a;
+  --color-blue-950: #08152B;
 }
 
-* {
-  box-sizing: border-box;
-}
+/* ─── Base ───────────────────────────────────────────────── */
+* { box-sizing: border-box; }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-body), "DM Sans", sans-serif;
+  font-family: "Glacial Indifference", var(--font-body), sans-serif;
   overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading), "Space Grotesk", sans-serif;
+  font-family: "Glacial Indifference", sans-serif;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-track {
-  background: #050b18;
-}
+/* ─── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #08152B; }
 ::-webkit-scrollbar-thumb {
-  background: rgba(74, 158, 255, 0.4);
+  background: rgba(96, 166, 195, 0.4);
   border-radius: 2px;
 }
 
-/* Glassmorphism card */
+/* ─── Utility classes ────────────────────────────────────── */
 .glass-card {
   background: var(--glass);
   border: 1px solid var(--glass-border);
@@ -57,26 +80,22 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-backdrop-filter: blur(12px);
 }
 
-/* Glow text */
 .glow-text {
-  text-shadow: 0 0 40px rgba(74, 158, 255, 0.4);
+  text-shadow: 0 0 50px rgba(96, 166, 195, 0.45);
 }
 
-/* Neon border */
 .neon-border {
-  border: 1px solid rgba(74, 158, 255, 0.3);
-  box-shadow: 0 0 20px rgba(74, 158, 255, 0.05), inset 0 0 20px rgba(74, 158, 255, 0.02);
+  border: 1px solid rgba(96, 166, 195, 0.25);
+  box-shadow: 0 0 20px rgba(96, 166, 195, 0.05), inset 0 0 20px rgba(96, 166, 195, 0.02);
 }
 
-/* Background grid pattern */
 .bg-grid {
   background-image:
-    linear-gradient(rgba(74, 158, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(74, 158, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(96, 166, 195, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(96, 166, 195, 0.04) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
-/* Radial glow */
 .radial-glow {
-  background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(74, 158, 255, 0.08) 0%, transparent 70%);
+  background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(96, 166, 195, 0.08) 0%, transparent 70%);
 }

@@ -35,12 +35,18 @@ export default function Sponsors() {
           </div>
 
           <div className="inline-flex items-center gap-4 glass-card neon-border rounded-2xl px-8 py-5">
-            {/* TMU Logo placeholder — replace src with actual TMU logo */}
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/30 to-blue-900/20 border border-blue-400/30 flex items-center justify-center">
-              <span className="text-blue-300 font-black text-sm">TMU</span>
+            <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0">
+              <Image
+                src="/dark_msa.png"
+                alt="TMU MSA"
+                width={48}
+                height={48}
+                className="w-full h-full object-contain"
+                style={{ mixBlendMode: "screen" }}
+              />
             </div>
             <div className="text-left">
-              <div className="text-white font-bold">TMU MSA</div>
+              <div className="text-white font-bold" style={{ fontFamily: "'Glacial Indifference', sans-serif" }}>TMU MSA</div>
               <div className="text-white/40 text-xs">Toronto Metropolitan University Muslim Students' Association</div>
             </div>
           </div>

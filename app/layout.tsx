@@ -1,19 +1,22 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, DM_Sans, Amiri } from "next/font/google";
+import { Anton, DM_Sans, Amiri } from "next/font/google";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-heading",
+// Big display title — ILM RETREAT
+const anton = Anton({
+  variable: "--font-display",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: "400",
 });
 
+// UI elements, buttons, labels
 const dmSans = DM_Sans({
   variable: "--font-body",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
 });
 
+// Arabic text
 const amiri = Amiri({
   variable: "--font-arabic",
   subsets: ["arabic"],
@@ -36,7 +39,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${spaceGrotesk.variable} ${dmSans.variable} ${amiri.variable} antialiased bg-[#050b18] text-white`}>
+      <body className={`${anton.variable} ${dmSans.variable} ${amiri.variable} antialiased bg-[#08152B] text-white`}>
         {children}
       </body>
     </html>

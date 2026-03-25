@@ -123,7 +123,7 @@ export default function PurposeSection() {
                   width={320}
                   height={380}
                   className="w-[220px] lg:w-[280px] xl:w-[320px] object-contain relative z-10"
-                  style={{ filter: "drop-shadow(0 0 60px rgba(74,158,255,0.6)) drop-shadow(0 0 30px rgba(74,158,255,0.3)) drop-shadow(0 20px 40px rgba(0,0,0,0.5))" }}
+                  style={{ filter: "drop-shadow(0 0 60px rgba(96,166,195,0.6)) drop-shadow(0 0 30px rgba(96,166,195,0.3)) drop-shadow(0 20px 40px rgba(0,0,0,0.5))" }}
                 />
               </motion.div>
             </motion.div>
