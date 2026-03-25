@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "All fields are required." }, { status: 400 });
     }
 
-    await appendToAirtable({ name, email, gender, status: "Pending Payment" });
+    await appendToAirtable({ name, email, gender });
 
     return NextResponse.json({ ok: true });
   } catch (err) {
