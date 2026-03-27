@@ -218,37 +218,12 @@ export default function InfoSection() {
                 <div className="flex-1 glass-card neon-border rounded-2xl px-5 py-4 flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-6">
                   <span className={`font-mono text-sm font-medium w-28 shrink-0 ${typeColors[item.type]}`}>{item.time}</span>
                   <div className="flex-1">
-                    <div className="flex flex-wrap items-center gap-2 mb-1">
+                    <div className="flex flex-wrap items-center gap-2">
                       <span className="text-white font-semibold text-sm">{item.title}</span>
                       {item.type === "parallel" && (
                         <span className="text-xs bg-purple-500/15 border border-purple-400/20 text-purple-300 px-2 py-0.5 rounded-full">2 tracks</span>
                       )}
                     </div>
-                    {/* Regular speakers */}
-                    {item.speakers && item.speakers.length > 0 && (
-                      <div className="flex flex-wrap gap-1.5 mt-1">
-                        {item.speakers.map((s) => (
-                          <span key={s} className="text-xs text-blue-300/70 bg-blue-500/10 border border-blue-400/15 px-2 py-0.5 rounded-full">
-                            {s}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                    {/* Parallel tracks */}
-                    {item.tracks && (
-                      <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        {item.tracks.map((track) => (
-                          <div key={track.title} className="bg-purple-500/8 border border-purple-400/15 rounded-xl px-3 py-2">
-                            <div className="text-purple-200/80 text-xs font-medium mb-1">{track.title}</div>
-                            <div className="flex flex-wrap gap-1">
-                              {track.speakers.map((s) => (
-                                <span key={s} className="text-xs text-white/40">{s}</span>
-                              ))}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
                   </div>
                 </div>
               </motion.div>
