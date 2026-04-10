@@ -16,11 +16,11 @@ type ScheduleItem = {
 const schedule: ScheduleItem[] = [
   {
     time: "10:00 – 10:45 AM",
-    title: "Session 1 — Introduction",
+    title: "Session 1 — Intro Khatira",
     icon: "📖",
-    desc: "Opening lecture",
+    desc: "Opening khatira",
     type: "session",
-    speakers: ["Shaykh Adil Mannan", "Shaykh Ammar"],
+    speakers: ["Shaykh Adil Mannan"],
   },
   {
     time: "11:00 AM – 12:20 PM",
@@ -28,7 +28,7 @@ const schedule: ScheduleItem[] = [
     icon: "📖",
     desc: "The sciences of the Quran",
     type: "session",
-    speakers: ["Shaykh Ammar J.", "Shaykh Adil Mannan"],
+    speakers: ["Shaykh Ammar J."],
   },
   {
     time: "12:40 – 2:00 PM",
@@ -36,7 +36,14 @@ const schedule: ScheduleItem[] = [
     icon: "📖",
     desc: "Deep reflection and Quranic exegesis",
     type: "session",
-    speakers: ["Dr. Fadel Suliman", "Dr. Amjad Qourshah", "Shaykh Waleed"],
+    speakers: ["Shaykh Waleed"],
+  },
+  {
+    time: "2:00 – 2:30 PM",
+    title: "Break",
+    icon: "☕",
+    desc: "Short break",
+    type: "break",
   },
   {
     time: "2:30 – 3:30 PM",
@@ -52,8 +59,8 @@ const schedule: ScheduleItem[] = [
     desc: "Two simultaneous tracks",
     type: "parallel",
     tracks: [
-      { title: "The Eternal Challenge", speakers: ["Adil Mannan", "Samir Hussain"] },
-      { title: "Seerah as told by the Quran", speakers: ["Ahmad Wardak", "Sh. Usman Qamar"] },
+      { title: "The Eternal Challenge", speakers: ["Adil Mannan"] },
+      { title: "Seerah as Told by the Quran", speakers: ["Dr. Amjad Qourshah"] },
     ],
   },
   {
@@ -63,8 +70,8 @@ const schedule: ScheduleItem[] = [
     desc: "Two simultaneous tracks",
     type: "parallel",
     tracks: [
-      { title: "Towards Quranic Civilization", speakers: ["Dr. Ali Halawani", "Shaykh Nouman Attique"] },
-      { title: "Khuluq al-Quran", speakers: ["Muhammad Zahid", "Sh. Syed Hassan"] },
+      { title: "Towards Quranic Civilization", speakers: ["Dr. Ali Halawani"] },
+      { title: "Khuluq al-Quran", speakers: ["Muhammad Zahid"] },
     ],
   },
   {
@@ -88,12 +95,13 @@ const schedule: ScheduleItem[] = [
     icon: "💡",
     desc: "Closing panel with our speakers",
     type: "session",
+    speakers: ["Shaykh Abdallah Idris", "Sh. Syed", "Shaykh Muhammad Zahid", "Samir Hussain"],
   },
   {
-    time: "7:30 PM+",
-    title: "Dinner + Maghrib",
+    time: "7:30 – 9:00 PM",
+    title: "Maghrib + Dinner",
     icon: "🌙",
-    desc: "Evening meal and Maghrib prayer to close the day",
+    desc: "Maghrib prayer and evening dinner to close the day",
     type: "prayer",
   },
 ];
@@ -116,7 +124,7 @@ const stats = [
   { label: "Full Day", value: "9h+" },
   { label: "Speakers", value: "10+" },
   { label: "Attendees Expected", value: "200+" },
-  { label: "Early Bird", value: "$15" },
+  { label: "Early Bird until Apr 6", value: "$15" },
 ];
 
 function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -197,37 +205,68 @@ export default function InfoSection() {
           </h3>
         </FadeUp>
 
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-[19px] top-0 bottom-0 w-px bg-gradient-to-b from-blue-400/40 via-blue-400/20 to-transparent hidden sm:block" />
+        <div ref={ref} className="overflow-x-auto -mx-2 px-2">
+          <div className="min-w-[540px]">
 
-          <div className="space-y-3" ref={ref}>
-            {schedule.map((item, i) => (
-              <motion.div
-                key={item.time}
-                initial={{ opacity: 0, x: -30 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.5, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                className="flex gap-4 sm:gap-6 items-start"
-              >
-                {/* Timeline dot */}
-                <div className={`shrink-0 w-10 h-10 rounded-full border flex items-center justify-center text-sm z-10 backdrop-blur-sm ${typeBg[item.type]}`}>
-                  {item.icon}
-                </div>
+            {/* Track column headers */}
+            <div className="grid grid-cols-[92px_1fr_1fr] gap-x-2 mb-2">
+              <div />
+              <div className="text-center text-[10px] font-medium uppercase tracking-[0.18em] text-white/20 pb-1.5 border-b border-white/5">Track A</div>
+              <div className="text-center text-[10px] font-medium uppercase tracking-[0.18em] text-white/20 pb-1.5 border-b border-white/5">Track B</div>
+            </div>
 
-                <div className="flex-1 glass-card neon-border rounded-2xl px-5 py-4 flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-6">
-                  <span className={`font-mono text-sm font-medium w-28 shrink-0 ${typeColors[item.type]}`}>{item.time}</span>
-                  <div className="flex-1">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-white font-semibold text-sm">{item.title}</span>
-                      {item.type === "parallel" && (
-                        <span className="text-xs bg-purple-500/15 border border-purple-400/20 text-purple-300 px-2 py-0.5 rounded-full">2 tracks</span>
-                      )}
+            <div className="space-y-1.5">
+              {schedule.map((item, i) => {
+                const [start, end] = item.time.split(" – ");
+                return (
+                  <motion.div
+                    key={item.time}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.4, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
+                    className="grid grid-cols-[92px_1fr_1fr] gap-x-2 items-stretch"
+                  >
+                    {/* Time label */}
+                    <div className="flex flex-col justify-center items-end pr-3 py-1 gap-0.5">
+                      <span className="font-mono text-[11px] text-white/50 leading-none">{start}</span>
+                      {end && <span className="font-mono text-[10px] text-white/25 leading-none">{end}</span>}
                     </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+
+                    {/* Content */}
+                    {item.type === "parallel" ? (
+                      <>
+                        {item.tracks!.map((track, ti) => (
+                          <div
+                            key={ti}
+                            className="rounded-xl px-4 py-3 bg-[#1e1830]/60 border border-white/[0.08] flex flex-col gap-1"
+                          >
+                            <span className="text-white/85 font-semibold text-sm leading-snug">{track.title}</span>
+                            <span className="text-white/35 text-xs">{track.speakers[0]}</span>
+                          </div>
+                        ))}
+                      </>
+                    ) : (
+                      <div className={`col-span-2 rounded-xl px-4 py-3 border flex items-center gap-3 ${
+                        item.type === "prayer"
+                          ? "bg-emerald-950/40 border-emerald-400/10"
+                          : item.type === "break"
+                          ? "bg-white/[0.02] border-white/[0.06]"
+                          : "bg-blue-950/40 border-blue-400/10"
+                      }`}>
+                        <span className="text-base shrink-0 opacity-70">{item.icon}</span>
+                        <div className="flex-1 min-w-0">
+                          <span className="text-white/85 font-semibold text-sm">{item.title}</span>
+                          {item.speakers && item.speakers.length > 0 && (
+                            <div className="text-white/35 text-xs mt-0.5">{item.speakers.join("  ·  ")}</div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </motion.div>
+                );
+              })}
+            </div>
+
           </div>
         </div>
 
