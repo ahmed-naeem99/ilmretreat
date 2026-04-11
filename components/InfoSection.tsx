@@ -20,7 +20,6 @@ const schedule: ScheduleItem[] = [
     icon: "📖",
     desc: "Opening khatira",
     type: "session",
-    speakers: ["Shaykh Adil Mannan"],
   },
   {
     time: "11:00 AM – 12:20 PM",
@@ -28,7 +27,6 @@ const schedule: ScheduleItem[] = [
     icon: "📖",
     desc: "The sciences of the Quran",
     type: "session",
-    speakers: ["Shaykh Ammar J."],
   },
   {
     time: "12:40 – 2:00 PM",
@@ -36,7 +34,6 @@ const schedule: ScheduleItem[] = [
     icon: "📖",
     desc: "Deep reflection and Quranic exegesis",
     type: "session",
-    speakers: ["Shaykh Waleed"],
   },
   {
     time: "2:00 – 2:30 PM",
@@ -59,8 +56,8 @@ const schedule: ScheduleItem[] = [
     desc: "Two simultaneous tracks",
     type: "parallel",
     tracks: [
-      { title: "The Eternal Challenge", speakers: ["Adil Mannan"] },
-      { title: "Seerah as Told by the Quran", speakers: ["Dr. Amjad Qourshah"] },
+      { title: "Track A", speakers: [] },
+      { title: "Track B", speakers: [] },
     ],
   },
   {
@@ -70,8 +67,8 @@ const schedule: ScheduleItem[] = [
     desc: "Two simultaneous tracks",
     type: "parallel",
     tracks: [
-      { title: "Towards Quranic Civilization", speakers: ["Dr. Ali Halawani"] },
-      { title: "Khuluq al-Quran", speakers: ["Muhammad Zahid"] },
+      { title: "Track A", speakers: [] },
+      { title: "Track B", speakers: [] },
     ],
   },
   {
@@ -87,7 +84,6 @@ const schedule: ScheduleItem[] = [
     icon: "📿",
     desc: "Recitation",
     type: "session",
-    speakers: ["Shaykh Fahim Mannan"],
   },
   {
     time: "6:30 – 7:30 PM",
@@ -95,7 +91,6 @@ const schedule: ScheduleItem[] = [
     icon: "💡",
     desc: "Closing panel with our speakers",
     type: "session",
-    speakers: ["Shaykh Abdallah Idris", "Sh. Syed", "Shaykh Muhammad Zahid", "Samir Hussain"],
   },
   {
     time: "7:30 – 9:00 PM",
@@ -241,7 +236,7 @@ export default function InfoSection() {
                             className="rounded-xl px-4 py-3 bg-[#1e1830]/60 border border-white/[0.08] flex flex-col gap-1"
                           >
                             <span className="text-white/85 font-semibold text-sm leading-snug">{track.title}</span>
-                            <span className="text-white/35 text-xs">{track.speakers[0]}</span>
+                            {track.speakers[0] && <span className="text-white/35 text-xs">{track.speakers[0]}</span>}
                           </div>
                         ))}
                       </>
