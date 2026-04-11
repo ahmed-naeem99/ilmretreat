@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Anton, DM_Sans, Amiri } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 // Big display title — ILM RETREAT
@@ -41,6 +42,7 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className={`${anton.variable} ${dmSans.variable} ${amiri.variable} antialiased bg-[#08152B] text-white`}>
         {children}
+        <Analytics />
       </body>
     </html>
   );
