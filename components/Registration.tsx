@@ -105,7 +105,7 @@ export default function Registration() {
               </div>
               <div className="inline-flex items-center gap-2 bg-blue-500/15 border border-blue-400/25 rounded-full px-3 py-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-                <span className="text-blue-300 text-xs font-medium tracking-wide">Early Bird — ends April 6th</span>
+                <span className="text-blue-300 text-xs font-medium tracking-wide">Early Bird</span>
               </div>
             </div>
           </motion.div>
