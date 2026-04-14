@@ -52,7 +52,7 @@ const speakers = [
     specialty: "Islamic Studies",
     initials: "SH",
     photo: "/speakers/syed-hassan.jpg",
-    bio: "A scholar and educator serving the Toronto Muslim community.",
+    bio: "A scholar and educator based in Toronto, Ustadh Syed Hassan is known for his thoughtful approach to Islamic studies and his work in community education and youth development across the GTA.",
   },
 ];
 

@@ -30,14 +30,14 @@ const schedule: ScheduleItem[] = [
   },
   {
     time: "11:00 AM – 12:20 PM",
-    title: "Session 1",
+    title: "Preservation & Qira'at",
     icon: "📖",
     desc: "",
     type: "session",
   },
   {
     time: "12:40 – 2:00 PM",
-    title: "Session 2",
+    title: "Intro to Tadabur & Tafsir",
     icon: "📖",
     desc: "",
     type: "session",
@@ -56,8 +56,8 @@ const schedule: ScheduleItem[] = [
     desc: "Two simultaneous tracks",
     type: "parallel",
     tracks: [
-      { title: "Track A", speakers: [] },
-      { title: "Track B", speakers: [] },
+      { title: "The Eternal Challenge", speakers: [] },
+      { title: "Seerah as Told by the Quran", speakers: [] },
     ],
   },
   {
@@ -67,8 +67,8 @@ const schedule: ScheduleItem[] = [
     desc: "Two simultaneous tracks",
     type: "parallel",
     tracks: [
-      { title: "Track A", speakers: [] },
-      { title: "Track B", speakers: [] },
+      { title: "Towards Quranic Civilization", speakers: [] },
+      { title: "Khuluq al-Quran", speakers: [] },
     ],
   },
   {

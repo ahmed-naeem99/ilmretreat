@@ -139,7 +139,7 @@ export default function Hero() {
               width={560}
               height={820}
               className="w-[340px] lg:w-[500px] xl:w-[620px] object-contain"
-              style={{ filter: "drop-shadow(0 0 80px rgba(147,51,234,0.5)) drop-shadow(0 0 30px rgba(147,51,234,0.25))" }}
+              style={{ filter: "drop-shadow(0 0 80px rgba(124,58,237,0.5)) drop-shadow(0 0 30px rgba(124,58,237,0.25))" }}
               priority
             />
           </motion.div>
