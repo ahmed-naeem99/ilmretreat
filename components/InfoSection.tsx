@@ -56,8 +56,8 @@ const schedule: ScheduleItem[] = [
     desc: "Two simultaneous tracks",
     type: "parallel",
     tracks: [
-      { title: "The Eternal Challenge", speakers: [] },
-      { title: "Seerah as Told by the Quran", speakers: [] },
+      { title: "Track A", speakers: [] },
+      { title: "Track B", speakers: [] },
     ],
   },
   {
@@ -67,8 +67,8 @@ const schedule: ScheduleItem[] = [
     desc: "Two simultaneous tracks",
     type: "parallel",
     tracks: [
-      { title: "Towards Quranic Civilization", speakers: [] },
-      { title: "Khuluq al-Quran", speakers: [] },
+      { title: "Track A", speakers: [] },
+      { title: "Track B", speakers: [] },
     ],
   },
   {
