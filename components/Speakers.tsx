@@ -2,7 +2,6 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import Image from "next/image";
 
 const speakers = [
   {
@@ -66,7 +65,6 @@ function SpeakerAvatar({
   size?: "lg" | "md";
 }) {
   const [imgFailed, setImgFailed] = useState(false);
-  const dim = size === "lg" ? 96 : 56;
   const cls =
     size === "lg"
       ? "w-24 h-24 rounded-2xl"
@@ -75,11 +73,9 @@ function SpeakerAvatar({
   if (!imgFailed) {
     return (
       <div className={`${cls} overflow-hidden bg-gradient-to-br from-purple-500/30 to-purple-800/20 border border-purple-400/30 shrink-0`}>
-        <Image
+        <img
           src={photo}
           alt={initials}
-          width={dim}
-          height={dim}
           className="w-full h-full object-cover"
           onError={() => setImgFailed(true)}
         />
