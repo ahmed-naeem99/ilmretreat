@@ -18,16 +18,16 @@
 
 /* ─── Brand tokens ───────────────────────────────────────── */
 :root {
-  --background:   #08152B;
+  --background:   #0A0520;
   --foreground:   #ffffff;
-  --accent:       #60A6C3;
-  --accent-light: #A0C3CB;
-  --accent-mid:   #6B9EB4;
-  --navy:         #213771;
-  --navy-deep:    #323E64;
-  --accent-dim:   rgba(96, 166, 195, 0.15);
-  --glass:        rgba(33, 55, 113, 0.35);
-  --glass-border: rgba(96, 166, 195, 0.15);
+  --accent:       #9333EA;
+  --accent-light: #C084FC;
+  --accent-mid:   #A855F7;
+  --navy:         #2D1B69;
+  --navy-deep:    #4C1D95;
+  --accent-dim:   rgba(147, 51, 234, 0.15);
+  --glass:        rgba(45, 27, 105, 0.35);
+  --glass-border: rgba(147, 51, 234, 0.15);
 }
 
 /* ─── Tailwind theme overrides ───────────────────────────── */
@@ -38,14 +38,14 @@
   --font-display: var(--font-display);
   --font-heading: var(--font-heading);
 
-  /* Map Tailwind's blue scale → brand teal palette */
-  --color-blue-300: #A0C3CB;
-  --color-blue-400: #6B9EB4;
-  --color-blue-500: #60A6C3;
-  --color-blue-600: #4a8fa8;
-  --color-blue-800: #213771;
-  --color-blue-900: #1a2d5a;
-  --color-blue-950: #08152B;
+  /* Map Tailwind's blue scale → brand purple palette */
+  --color-blue-300: #C084FC;
+  --color-blue-400: #A855F7;
+  --color-blue-500: #9333EA;
+  --color-blue-600: #7C3AED;
+  --color-blue-800: #2D1B69;
+  --color-blue-900: #1e1040;
+  --color-blue-950: #0A0520;
 }
 
 /* ─── Base ───────────────────────────────────────────────── */
@@ -68,7 +68,7 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: #08152B; }
 ::-webkit-scrollbar-thumb {
-  background: rgba(96, 166, 195, 0.4);
+  background: rgba(147, 51, 234, 0.4);
   border-radius: 2px;
 }
 
@@ -81,21 +81,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .glow-text {
-  text-shadow: 0 0 50px rgba(96, 166, 195, 0.45);
+  text-shadow: 0 0 50px rgba(147, 51, 234, 0.45);
 }
 
 .neon-border {
-  border: 1px solid rgba(96, 166, 195, 0.25);
-  box-shadow: 0 0 20px rgba(96, 166, 195, 0.05), inset 0 0 20px rgba(96, 166, 195, 0.02);
+  border: 1px solid rgba(147, 51, 234, 0.25);
+  box-shadow: 0 0 20px rgba(147, 51, 234, 0.05), inset 0 0 20px rgba(147, 51, 234, 0.02);
 }
 
 .bg-grid {
   background-image:
-    linear-gradient(rgba(96, 166, 195, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(96, 166, 195, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(147, 51, 234, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(147, 51, 234, 0.04) 1px, transparent 1px);
   background-size: 60px 60px;
 }
 
 .radial-glow {
-  background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(96, 166, 195, 0.08) 0%, transparent 70%);
+  background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(147, 51, 234, 0.08) 0%, transparent 70%);
 }

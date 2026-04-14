@@ -15,32 +15,32 @@ type ScheduleItem = {
 
 const schedule: ScheduleItem[] = [
   {
-    time: "10:00 – 10:45 AM",
-    title: "Session 1 — Intro Khatira",
-    icon: "📖",
-    desc: "Opening khatira",
+    time: "10:00 – 10:30 AM",
+    title: "Doors Open + Breakfast",
+    icon: "🌅",
+    desc: "Registration and morning breakfast",
+    type: "break",
+  },
+  {
+    time: "10:30 – 10:40 AM",
+    title: "Opening Remarks",
+    icon: "🎙️",
+    desc: "",
     type: "session",
   },
   {
     time: "11:00 AM – 12:20 PM",
-    title: "Session 2 — Intro to Uloom al-Quran",
+    title: "Session 1",
     icon: "📖",
-    desc: "The sciences of the Quran",
+    desc: "",
     type: "session",
   },
   {
     time: "12:40 – 2:00 PM",
-    title: "Session 3 — Intro to Tadabur & Tafsir",
+    title: "Session 2",
     icon: "📖",
-    desc: "Deep reflection and Quranic exegesis",
+    desc: "",
     type: "session",
-  },
-  {
-    time: "2:00 – 2:30 PM",
-    title: "Break",
-    icon: "☕",
-    desc: "Short break",
-    type: "break",
   },
   {
     time: "2:30 – 3:30 PM",
@@ -80,16 +80,16 @@ const schedule: ScheduleItem[] = [
   },
   {
     time: "6:15 – 6:30 PM",
-    title: "Session 4 — Qira'at",
+    title: "Qira'at",
     icon: "📿",
     desc: "Recitation",
     type: "session",
   },
   {
     time: "6:30 – 7:30 PM",
-    title: "Session 5 — Panel Discussion",
+    title: "Panel Discussion",
     icon: "💡",
-    desc: "Closing panel with our speakers",
+    desc: "Closing panel",
     type: "session",
   },
   {
@@ -116,10 +116,10 @@ const typeBg: Record<string, string> = {
 };
 
 const stats = [
-  { label: "Full Day", value: "9h+" },
-  { label: "Speakers", value: "10+" },
+  { label: "Full Day", value: "11h+" },
+  { label: "Speakers", value: "7" },
   { label: "Attendees Expected", value: "200+" },
-  { label: "Early Bird until Apr 6", value: "$15" },
+  { label: "Ticket Price", value: "$15" },
 ];
 
 function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
@@ -157,7 +157,7 @@ export default function InfoSection() {
             The <span className="text-blue-400">Day</span>
           </h2>
           <p className="text-white/50 text-lg max-w-xl mb-16">
-            May 3rd, 2026 · 10:30AM – 9PM — A full-day immersive experience designed to reconnect you with the Qur'an through knowledge, reflection, and community.
+            May 3rd, 2026 · 10:00AM – 9PM — A full-day immersive experience designed to reconnect you with the Qur'an through knowledge, reflection, and community.
           </p>
         </FadeUp>
 
@@ -281,7 +281,7 @@ export default function InfoSection() {
                 <div className="text-white font-bold text-lg leading-snug">Sears Atrium</div>
                 <div className="text-white/60 text-sm mt-0.5 font-medium">George Vari Engineering and Computing Centre</div>
                 <div className="text-white/40 text-xs mt-1">245 Church St, Toronto, ON M5B 2R2</div>
-                <div className="text-white/40 text-xs mt-0.5">10:30 AM – 9:00 PM</div>
+                <div className="text-white/40 text-xs mt-0.5">10:00 AM – 9:00 PM</div>
               </div>
             </div>
 

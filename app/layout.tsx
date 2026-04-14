@@ -40,7 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${anton.variable} ${dmSans.variable} ${amiri.variable} antialiased bg-[#08152B] text-white`}>
+      <body className={`${anton.variable} ${dmSans.variable} ${amiri.variable} antialiased bg-[#0A0520] text-white`}>
         {children}
         <Analytics />
       </body>
