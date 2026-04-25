@@ -3,27 +3,114 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useState } from "react";
 
-const SQUARE_URL = process.env.NEXT_PUBLIC_SQUARE_PAYMENT_URL ?? "#";
+const SQUARE_URL =
+  process.env.NEXT_PUBLIC_SQUARE_PAYMENT_URL ?? "https://square.link/u/Hj11PSQv";
+
+const PATHWAY1_OPTIONS = [
+  {
+    value: "The Eternal Challenge",
+    label: "The Eternal Challenge",
+    speaker: "Shaykh Adil Mannan",
+  },
+  {
+    value: "Seerah Through the Lens of the Quran",
+    label: "Seerah Through the Lens of the Quran",
+    speaker: "Dr. Amjad Qourshah",
+  },
+];
+
+const PATHWAY2_OPTIONS = [
+  {
+    value: "Towards Quranic Civilization",
+    label: "Towards Quranic Civilization",
+    speaker: "Dr. Ali Al-Halawani",
+  },
+  {
+    value: "Khuluq Al-Quran: Character Through the Quran",
+    label: "Khuluq Al-Quran: Character Through the Quran",
+    speaker: "Shaykh Muhammad Zahid Abu Ghudda",
+  },
+];
+
+function PathwayOption({
+  value,
+  label,
+  speaker,
+  selected,
+  onChange,
+}: {
+  value: string;
+  label: string;
+  speaker: string;
+  selected: boolean;
+  onChange: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onChange}
+      className={`w-full text-left rounded-xl px-4 py-3 border transition-all duration-200 ${
+        selected
+          ? "bg-blue-500/20 border-blue-400/50 text-white"
+          : "bg-white/5 border-white/10 text-white/60 hover:border-white/20 hover:bg-white/[0.07]"
+      }`}
+    >
+      <div className="flex items-start gap-3">
+        <div
+          className={`mt-0.5 w-4 h-4 rounded-full border-2 flex items-center justify-center shrink-0 ${
+            selected ? "border-blue-400 bg-blue-400" : "border-white/30"
+          }`}
+        >
+          {selected && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
+        </div>
+        <div>
+          <div className="text-sm font-medium leading-snug">{label}</div>
+          <div className={`text-xs mt-0.5 ${selected ? "text-blue-300/70" : "text-white/30"}`}>
+            {speaker}
+          </div>
+        </div>
+      </div>
+    </button>
+  );
+}
 
 export default function Registration() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
-  const [form, setForm] = useState({ name: "", email: "", gender: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    gender: "",
+    pathway1: "",
+    pathway2: "",
+  });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const setPathway = (key: "pathway1" | "pathway2", value: string) => {
+    setForm((prev) => ({ ...prev, [key]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
 
-    if (!form.name || !form.email || !form.gender) {
-      setError("Please fill in all fields.");
+    if (
+      !form.name ||
+      !form.email ||
+      !form.gender ||
+      !form.pathway1 ||
+      !form.pathway2
+    ) {
+      setError("Please fill in all fields including your pathway selections.");
       return;
     }
 
@@ -38,6 +125,7 @@ export default function Registration() {
       if (!res.ok) {
         setError(data.error ?? "Something went wrong. Please try again.");
       } else {
+        window.open(SQUARE_URL, "_blank");
         setSubmitted(true);
       }
     } catch {
@@ -54,13 +142,14 @@ export default function Registration() {
       </div>
 
       <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
           {/* Left: copy */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:sticky lg:top-24"
           >
             <div className="flex items-center gap-4 mb-4">
               <div className="h-px w-12 bg-blue-400/50" />
@@ -110,25 +199,65 @@ export default function Registration() {
             </div>
           </motion.div>
 
-          {/* Right: form or success */}
+          {/* Right: form → success */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <AnimatePresence mode="wait">
-              {!submitted ? (
+
+              {submitted ? (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  className="glass-card neon-border rounded-3xl p-8 flex flex-col items-center text-center gap-6"
+                >
+                  <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center">
+                    <svg className="w-8 h-8 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-white font-bold text-xl mb-2">
+                      You&apos;re registered, {form.name.split(" ")[0]}!
+                    </h3>
+                    <p className="text-white/50 text-sm leading-relaxed max-w-xs">
+                      Your registration is saved. Complete your{" "}
+                      <span className="text-white/80 font-medium">$15 payment</span> in the tab that just opened to confirm your spot for{" "}
+                      <span className="text-white/80 font-medium">May 3rd</span>, inshaAllah.
+                    </p>
+                  </div>
+                  <div className="w-full border border-white/5 rounded-xl px-4 py-4 text-left">
+                    <div className="text-white/50 font-medium mb-3 text-sm">Your pathway selections:</div>
+                    <div className="space-y-2">
+                      <div className="flex items-start gap-3">
+                        <span className="text-blue-400 text-xs font-mono shrink-0 mt-0.5">3:30 PM</span>
+                        <span className="text-white/60 text-sm">{form.pathway1}</span>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <span className="text-blue-400 text-xs font-mono shrink-0 mt-0.5">4:45 PM</span>
+                        <span className="text-white/60 text-sm">{form.pathway2}</span>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
+              ) : (
                 <motion.form
                   key="form"
                   onSubmit={handleSubmit}
-                  initial={{ opacity: 1 }}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                   className="glass-card neon-border rounded-3xl p-8 flex flex-col gap-5"
                 >
                   <div className="mb-2">
                     <h3 className="text-white font-bold text-xl">Register</h3>
-                    <p className="text-white/40 text-sm mt-1">Step 1 of 2 — fill in your details</p>
+                    <p className="text-white/40 text-sm mt-1">Fill in your details — you&apos;ll be sent to payment on submit</p>
                   </div>
 
                   {/* Name */}
@@ -173,8 +302,50 @@ export default function Registration() {
                     </select>
                   </div>
 
+                  {/* Pathway 1 */}
+                  <div className="flex flex-col gap-2">
+                    <label className="text-xs font-medium text-white/50 uppercase tracking-widest">
+                      Parallel Session 1 · 3:30 PM
+                    </label>
+                    <p className="text-white/30 text-xs -mt-1">Choose one track</p>
+                    <div className="flex flex-col gap-2 mt-1">
+                      {PATHWAY1_OPTIONS.map((opt) => (
+                        <PathwayOption
+                          key={opt.value}
+                          value={opt.value}
+                          label={opt.label}
+                          speaker={opt.speaker}
+                          selected={form.pathway1 === opt.value}
+                          onChange={() => setPathway("pathway1", opt.value)}
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Pathway 2 */}
+                  <div className="flex flex-col gap-2">
+                    <label className="text-xs font-medium text-white/50 uppercase tracking-widest">
+                      Parallel Session 2 · 4:45 PM
+                    </label>
+                    <p className="text-white/30 text-xs -mt-1">Choose one track</p>
+                    <div className="flex flex-col gap-2 mt-1">
+                      {PATHWAY2_OPTIONS.map((opt) => (
+                        <PathwayOption
+                          key={opt.value}
+                          value={opt.value}
+                          label={opt.label}
+                          speaker={opt.speaker}
+                          selected={form.pathway2 === opt.value}
+                          onChange={() => setPathway("pathway2", opt.value)}
+                        />
+                      ))}
+                    </div>
+                  </div>
+
                   {error && (
-                    <p className="text-red-400 text-xs bg-red-500/10 border border-red-500/20 rounded-lg px-4 py-3">{error}</p>
+                    <p className="text-red-400 text-xs bg-red-500/10 border border-red-500/20 rounded-lg px-4 py-3">
+                      {error}
+                    </p>
                   )}
 
                   <button
@@ -191,54 +362,17 @@ export default function Registration() {
                         Saving...
                       </>
                     ) : (
-                      "Register →"
+                      <>
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                        </svg>
+                        Complete Registration
+                      </>
                     )}
                   </button>
                 </motion.form>
-              ) : (
-                <motion.div
-                  key="success"
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                  className="glass-card neon-border rounded-3xl p-8 flex flex-col items-center text-center gap-6"
-                >
-                  {/* Check icon */}
-                  <div className="w-16 h-16 rounded-full bg-blue-500/20 border border-blue-400/30 flex items-center justify-center">
-                    <svg className="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-
-                  <div>
-                    <h3 className="text-white font-bold text-xl mb-2">You're in, {form.name.split(" ")[0]}!</h3>
-                    <p className="text-white/50 text-sm leading-relaxed max-w-xs">
-                      Your spot is reserved. Complete your <span className="text-white/80 font-medium">$15 payment</span> below to confirm your registration.
-                    </p>
-                  </div>
-
-                  {/* Step 2: pay */}
-                  <div className="w-full">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="h-px flex-1 bg-white/10" />
-                      <span className="text-xs text-white/30 uppercase tracking-widest">Step 2 of 2</span>
-                      <div className="h-px flex-1 bg-white/10" />
-                    </div>
-                    <a
-                      href={SQUARE_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full bg-blue-500 hover:bg-blue-400 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 text-sm"
-                    >
-                      Complete Payment — $15
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                    </a>
-                    <p className="text-white/20 text-xs mt-3">Opens in a new tab</p>
-                  </div>
-                </motion.div>
               )}
+
             </AnimatePresence>
           </motion.div>
 

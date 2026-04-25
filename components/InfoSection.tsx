@@ -1,7 +1,9 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useRef, useState } from "react";
+
+type Track = { title: string; speakers: string[]; details?: string };
 
 type ScheduleItem = {
   time: string;
@@ -9,44 +11,53 @@ type ScheduleItem = {
   icon: string;
   desc: string;
   type: string;
+  details?: string;
   speakers?: string[];
-  tracks?: { title: string; speakers: string[] }[];
+  tracks?: Track[];
 };
 
 const schedule: ScheduleItem[] = [
   {
-    time: "10:00 – 10:30 AM",
+    time: "10:00 – 10:45 AM",
     title: "Doors Open + Breakfast",
     icon: "🌅",
     desc: "Registration and morning breakfast",
     type: "break",
   },
   {
-    time: "10:30 – 10:40 AM",
+    time: "10:45 – 11:00 AM",
     title: "Opening Remarks",
     icon: "🎙️",
     desc: "",
     type: "session",
+    details:
+      "A warm welcome to all attendees. Our team will set the tone for a full day of Quranic immersion, outlining the vision and goals of the retreat.",
   },
   {
     time: "11:00 AM – 12:20 PM",
-    title: "Preservation & Qira'at",
+    title: "The Quran: Preserved By Promise",
     icon: "📖",
     desc: "",
     type: "session",
+    speakers: ["Shaykh Ammar Jakda"],
+    details:
+      "An exploration of Allah's divine guarantee to protect His final revelation — examining the miraculous chain of preservation through oral tradition, manuscripts, and scholarly transmission across 1,400 years.",
   },
   {
     time: "12:40 – 2:00 PM",
-    title: "Intro to Tadabur & Tafsir",
+    title: "Unlocking a Deeper Connection",
     icon: "📖",
-    desc: "",
+    desc: "Tadabbur & Tafsir",
     type: "session",
+    speakers: ["Shaykh Ammar Jakda"],
+    details:
+      "A practical deep-dive into Tadabbur and Tafsir — how to truly reflect on Quranic verses and unlock the layers of meaning embedded within them, so the Quran speaks to your heart in everyday life.",
   },
   {
-    time: "2:30 – 3:30 PM",
-    title: "Dhuhr + Lunch",
+    time: "2:00 – 3:30 PM",
+    title: "Dhuhr Salah & Lunch",
     icon: "🕌",
-    desc: "Congregational Dhuhr prayer, vendors & exhibition",
+    desc: "Congregational Dhuhr prayer and lunch",
     type: "prayer",
   },
   {
@@ -56,8 +67,18 @@ const schedule: ScheduleItem[] = [
     desc: "Two simultaneous tracks",
     type: "parallel",
     tracks: [
-      { title: "Track A", speakers: [] },
-      { title: "Track B", speakers: [] },
+      {
+        title: "The Eternal Challenge",
+        speakers: ["Shaykh Adil Mannan"],
+        details:
+          "An examination of the Quran's i'jaz (inimitability) — why the greatest literary, intellectual, and spiritual challenge ever issued to humanity remains unanswered after 1,400 years, and what this means for believers today.",
+      },
+      {
+        title: "Seerah Through the Lens of the Quran",
+        speakers: ["Dr. Amjad Qourshah"],
+        details:
+          "A captivating journey through the life of the Prophet ﷺ as illuminated by Quranic verses — discovering how the seerah and the Quran are inseparable, each bringing the other to life.",
+      },
     ],
   },
   {
@@ -67,30 +88,36 @@ const schedule: ScheduleItem[] = [
     desc: "Two simultaneous tracks",
     type: "parallel",
     tracks: [
-      { title: "Track A", speakers: [] },
-      { title: "Track B", speakers: [] },
+      {
+        title: "Towards Quranic Civilization",
+        speakers: ["Dr. Ali Al-Halawani"],
+        details:
+          "A vision for how the Quran's linguistic and moral framework can inspire a renewed civilization — exploring how Quranic values, semantics, and worldview can shape communities, institutions, and individual purpose.",
+      },
+      {
+        title: "Khuluq Al-Quran",
+        speakers: ["Sh. Muhammad Zahid Abu Ghudda"],
+        details:
+          "An exploration of the Prophet's ﷺ character as the living embodiment of the Quran — understanding how akhlaq is not separate from knowledge but is its highest expression, and how we can internalize it.",
+      },
     ],
   },
   {
     time: "5:45 – 6:15 PM",
-    title: "Asr + Refreshments",
+    title: "Asr Salah",
     icon: "🌤️",
-    desc: "Congregational Asr prayer and refreshments",
+    desc: "Congregational Asr prayer",
     type: "prayer",
   },
   {
-    time: "6:15 – 6:30 PM",
-    title: "Qira'at",
-    icon: "📿",
-    desc: "Recitation",
-    type: "session",
-  },
-  {
     time: "6:30 – 7:30 PM",
-    title: "Panel Discussion",
+    title: "The Quran's Role in Our Lives",
     icon: "💡",
     desc: "Closing panel",
     type: "session",
+    speakers: ["Ustadh Syed Hassan", "Shaykh Abdallah Idris"],
+    details:
+      "A closing panel bringing our scholars together to reflect on the day's themes and offer practical, heartfelt guidance on making the Quran a living presence — not just a book on the shelf — in everyday Muslim life.",
   },
   {
     time: "7:30 – 9:00 PM",
@@ -137,9 +164,32 @@ function FadeUp({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
   );
 }
 
+function Chevron({ open }: { open: boolean }) {
+  return (
+    <motion.svg
+      animate={{ rotate: open ? 180 : 0 }}
+      transition={{ duration: 0.2 }}
+      className="w-3.5 h-3.5 text-white/25 shrink-0"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+    </motion.svg>
+  );
+}
+
 export default function InfoSection() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const [expanded, setExpanded] = useState<Set<string>>(new Set());
+
+  const toggle = (key: string) =>
+    setExpanded((prev) => {
+      const next = new Set(prev);
+      next.has(key) ? next.delete(key) : next.add(key);
+      return next;
+    });
 
   return (
     <section id="info" className="relative py-16 lg:py-24 bg-grid">
@@ -213,6 +263,8 @@ export default function InfoSection() {
             <div className="space-y-1.5">
               {schedule.map((item, i) => {
                 const [start, end] = item.time.split(" – ");
+                const isExpanded = expanded.has(item.time);
+
                 return (
                   <motion.div
                     key={item.time}
@@ -222,39 +274,89 @@ export default function InfoSection() {
                     className="grid grid-cols-[92px_1fr_1fr] gap-x-2 items-stretch"
                   >
                     {/* Time label */}
-                    <div className="flex flex-col justify-center items-end pr-3 py-1 gap-0.5">
+                    <div className="flex flex-col justify-start items-end pr-3 py-3 gap-0.5">
                       <span className="font-mono text-[11px] text-white/50 leading-none">{start}</span>
-                      {end && <span className="font-mono text-[10px] text-white/25 leading-none">{end}</span>}
+                      {end && <span className="font-mono text-[10px] text-white/25 leading-none mt-0.5">{end}</span>}
                     </div>
 
                     {/* Content */}
                     {item.type === "parallel" ? (
                       <>
-                        {item.tracks!.map((track, ti) => (
-                          <div
-                            key={ti}
-                            className="rounded-xl px-4 py-3 bg-[#1e1830]/60 border border-white/[0.08] flex flex-col gap-1"
-                          >
-                            <span className="text-white/85 font-semibold text-sm leading-snug">{track.title}</span>
-                            {track.speakers[0] && <span className="text-white/35 text-xs">{track.speakers[0]}</span>}
-                          </div>
-                        ))}
+                        {item.tracks!.map((track, ti) => {
+                          const trackKey = `${item.time}-${ti}`;
+                          const trackOpen = expanded.has(trackKey);
+                          return (
+                            <div
+                              key={ti}
+                              onClick={() => track.details && toggle(trackKey)}
+                              className={`rounded-xl px-4 py-3 bg-[#1e1830]/60 border border-white/[0.08] flex flex-col gap-0 ${track.details ? "cursor-pointer hover:border-white/[0.15] transition-colors duration-200" : ""}`}
+                            >
+                              <div className="flex items-start gap-2">
+                                <div className="flex-1 min-w-0">
+                                  <span className="text-white/85 font-semibold text-sm leading-snug">{track.title}</span>
+                                  {track.speakers[0] && (
+                                    <span className="text-white/35 text-xs block mt-0.5">{track.speakers[0]}</span>
+                                  )}
+                                </div>
+                                {track.details && <Chevron open={trackOpen} />}
+                              </div>
+                              <AnimatePresence initial={false}>
+                                {trackOpen && track.details && (
+                                  <motion.div
+                                    key="desc"
+                                    initial={{ height: 0, opacity: 0 }}
+                                    animate={{ height: "auto", opacity: 1 }}
+                                    exit={{ height: 0, opacity: 0 }}
+                                    transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                                    className="overflow-hidden"
+                                  >
+                                    <p className="text-white/45 text-[11px] leading-relaxed pt-2 mt-2 border-t border-white/[0.06]">
+                                      {track.details}
+                                    </p>
+                                  </motion.div>
+                                )}
+                              </AnimatePresence>
+                            </div>
+                          );
+                        })}
                       </>
                     ) : (
-                      <div className={`col-span-2 rounded-xl px-4 py-3 border flex items-center gap-3 ${
-                        item.type === "prayer"
-                          ? "bg-emerald-950/40 border-emerald-400/10"
-                          : item.type === "break"
-                          ? "bg-white/[0.02] border-white/[0.06]"
-                          : "bg-blue-950/40 border-blue-400/10"
-                      }`}>
-                        <span className="text-base shrink-0 opacity-70">{item.icon}</span>
-                        <div className="flex-1 min-w-0">
-                          <span className="text-white/85 font-semibold text-sm">{item.title}</span>
-                          {item.speakers && item.speakers.length > 0 && (
-                            <div className="text-white/35 text-xs mt-0.5">{item.speakers.join("  ·  ")}</div>
-                          )}
+                      <div
+                        onClick={() => item.details && toggle(item.time)}
+                        className={`col-span-2 rounded-xl px-4 py-3 border ${
+                          item.type === "prayer"
+                            ? "bg-emerald-950/40 border-emerald-400/10"
+                            : item.type === "break"
+                            ? "bg-white/[0.02] border-white/[0.06]"
+                            : "bg-blue-950/40 border-blue-400/10"
+                        } ${item.details ? "cursor-pointer hover:border-blue-400/20 transition-colors duration-200" : ""}`}
+                      >
+                        <div className="flex items-center gap-3">
+                          <span className="text-base shrink-0 opacity-70">{item.icon}</span>
+                          <div className="flex-1 min-w-0">
+                            <span className="text-white/85 font-semibold text-sm">{item.title}</span>
+                            {item.speakers && item.speakers.length > 0 && (
+                              <div className="text-white/35 text-xs mt-0.5">{item.speakers.join("  ·  ")}</div>
+                            )}
+                          </div>
+                          {item.details && <Chevron open={isExpanded} />}
                         </div>
+                        <AnimatePresence initial={false}>
+                          {isExpanded && item.details && (
+                            <motion.div
+                              key="desc"
+                              initial={{ height: 0, opacity: 0 }}
+                              animate={{ height: "auto", opacity: 1 }}
+                              exit={{ height: 0, opacity: 0 }}
+                              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                              className="overflow-hidden"
+                            >
+                              <p className="text-white/45 text-[11px] leading-relaxed pt-2 mt-2 border-t border-white/[0.06]">
+                                {item.details}
+                              </p>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
                       </div>
                     )}
                   </motion.div>

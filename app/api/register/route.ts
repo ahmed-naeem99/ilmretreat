@@ -1,17 +1,25 @@
 import { NextRequest, NextResponse } from "next/server";
-import { appendToAirtable } from "@/lib/airtable";
+import { appendToAirtable, checkEmailExists } from "@/lib/airtable";
 
 export const dynamic = "force-dynamic";
 
 export async function POST(req: NextRequest) {
   try {
-    const { name, email, gender } = await req.json();
+    const { name, email, gender, pathway1, pathway2 } = await req.json();
 
-    if (!name || !email || !gender) {
+    if (!name || !email || !gender || !pathway1 || !pathway2) {
       return NextResponse.json({ error: "All fields are required." }, { status: 400 });
     }
 
-    await appendToAirtable({ name, email, gender });
+    const alreadyRegistered = await checkEmailExists(email);
+    if (alreadyRegistered) {
+      return NextResponse.json(
+        { error: "This email is already registered. If you have questions, please contact us." },
+        { status: 409 }
+      );
+    }
+
+    await appendToAirtable({ name, email, gender, pathway1, pathway2 });
 
     return NextResponse.json({ ok: true });
   } catch (err) {

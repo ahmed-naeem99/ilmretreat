@@ -1,57 +1,57 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useMemo } from "react";
 
 const speakers = [
+  {
+    name: "Shaykh Ammar Jakda",
+    specialty: "Quran Sciences & Theology",
+    initials: "AJ",
+    photo: "/speakers/ammar-jakda.jpg",
+    bio: "Shaykh Ammar Jakda, born and raised in Cambridge, ON, memorized the Qur'an in Gujarat, India, before studying at Jamiatul Ilm Wal Huda (UK) and graduating as an 'alim from Nadwatul Ulama in Lucknow, India. He later specialized in Islamic theology and logic in Istanbul, Türkiye. Formerly an instructor at Al Khalil Academy in Toronto, he currently teaches at Tamhid Institute and Wijhah Initiative.",
+  },
   {
     name: "Shaykh Adil Mannan",
     specialty: "Fiqh & Quranic Sciences",
     initials: "AM",
     photo: "/speakers/adil-mannan.jpg",
-    bio: "A graduate of the Islamic University of Madinah in Shariah with a specialization in Fiqh and Usool al-Fiqh, Shaykh Adil holds an Ijazah in Hafs 'an 'Asim and received an Ijazah Aammah through the scholarly circle of Shaykh Dr. Mustafa Makhdoom. He has served Muslim communities across Toronto for over a decade, including Abu Huraira Center and Masjid Omar bin al-Khattab, through youth mentorship, family counseling, and Qur'anic education.",
-  },
-  {
-    name: "Shaykh Ammar Jakda",
-    specialty: "Hadith Sciences",
-    initials: "AJ",
-    photo: "/speakers/ammar-jakda.jpg",
-    bio: "Raised in Cambridge, Ontario, Shaykh Ammar completed his 'alim studies at Nadwatul Ulama in Lucknow, India, before specializing in Islamic theology and logic in Istanbul. He teaches Hadith sciences at Al Khalil Academy in Toronto and at the Wijhah Initiative.",
-  },
-  {
-    name: "Dr. Ali Al-Halawani",
-    specialty: "Quranic Sciences",
-    initials: "AH",
-    photo: "/speakers/ali-halawani.jpg",
-    bio: "A PhD scholar from Al-Azhar and educator across three continents, Dr. Ali is known for making Qur'anic understanding relevant and accessible in today's world.",
+    bio: "A graduate of the Islamic University of Madinah in Shariah with a specialization in Fiqh and Usool al-Fiqh, Shaykh Adil holds an Ijazah in Hafs 'an 'Asim and received an Ijazah Aammah through the scholarly circle of Shaykh Dr. Mustafa Makhdoom. He has served Muslim communities across Toronto for over a decade, including Abu Huraira Center and Masjid Omar bin al-Khattab, through youth mentorship, family counselling, and Qur'anic education.",
   },
   {
     name: "Dr. Amjad Qourshah",
-    specialty: "Tafseer & 'Aqidah",
+    specialty: "Tafseer & Comparative Religion",
     initials: "AQ",
     photo: "/speakers/amjad-qourshah.jpg",
-    bio: "A professor of Sharia at the University of Jordan, Dr. Amjad brings over 35 years of experience in Tafseer, 'Aqidah, and real-life guidance through teaching and counseling.",
+    bio: "Dr. Amjad Qourshah is a renowned Islamic speaker and lecturer born in Jordan in 1967. He holds a Bachelor's in Fundamentals of Jurisprudence and a Master's in Tafseer from the University of Jordan, along with a PhD in Comparative Religious Studies from the University of Birmingham. Fluent in Arabic and English, his accessible approach has drawn wide audiences across over 200 cities worldwide. He currently serves as Resident Scholar at Dar Foundation in Oakville, Ontario.",
+  },
+  {
+    name: "Dr. Ali Al-Halawani",
+    specialty: "Quranic Linguistics",
+    initials: "AH",
+    photo: "/speakers/ali-halawani.jpg",
+    bio: "Dr. Ali Al-Halawani is an educator and linguist with over two decades of experience across Egypt, Malaysia, and Canada. He currently serves as Content Production Manager at the Muslim Association of Canada (MAC) and holds a PhD in English Linguistics and Translation Studies from Al-Azhar University, specializing in Qur'anic collocations, semantics, and religious translation. He has authored three books and translated sixteen, bridging traditional Islamic knowledge with modern linguistic methodologies.",
   },
   {
     name: "Shaykh Muhammad Zahid Abu Ghudda",
-    specialty: "Fiqh & Hadith",
+    specialty: "Fiqh, Hadith & Akhlaq",
     initials: "MZ",
     photo: "/speakers/muhammad-zahid.jpg",
-    bio: "A trusted scholar and community leader, Shaykh Muhammad Zahid Abu Ghudda delivers practical and inspiring teachings on Fiqh, Hadith, and character.",
-  },
-  {
-    name: "Dr. Abdalla Idris Ali",
-    specialty: "Tafsir",
-    initials: "AI",
-    photo: "/speakers/abdalla-idris.jpg",
-    bio: "Holding a PhD from the University of Toronto, Dr. Abdalla Idris Ali founded the first full-time Islamic school in Canada in 1982 and served two terms as President of ISNA. He currently serves as Executive Director of ISNA Canada, where he holds regular Tafseer classes.",
+    bio: "Shaykh Mohammad Zahid Abu Ghudda is the eldest son of the late Shaykh 'Abd al-Fattāḥ Abu Ghudda, widely recognized as one of the leading Muslim scholars of the 20th century, under whom he studied the Islamic sciences extensively. His lectures span Fiqh, Ḥadith, Akhlaq, Ulum al-Qur'an, and History. He is a frequent khateeb across the GTA, has authored and translated several books in Arabic and English, holds an MBA from the University of Toronto, and has resided in Canada since 1991.",
   },
   {
     name: "Ustadh Syed Hassan",
-    specialty: "Islamic Studies",
+    specialty: "Exegesis & Hanafi Fiqh",
     initials: "SH",
     photo: "/speakers/syed-hassan.jpg",
-    bio: "A scholar and educator based in Toronto, Ustadh Syed Hassan is known for his thoughtful approach to Islamic studies and his work in community education and youth development across the GTA.",
+    bio: "Ustadh Syed Hassan was raised in Toronto and studied Theoretical Mathematics at the University of Waterloo before pursuing traditional Islamic studies. He studied at Cambridge Islamic College under Shaykh Muhammad Akram Nadwi, specializing in exegesis and Hanafi fiqh. He currently serves as Curriculum Lead and Vice-Principal at AlHuda Secondary School and has served the GTA community through khutbahs and seminars since 2012.",
+  },
+  {
+    name: "Dr. Abdalla Idris Ali",
+    specialty: "Tafsir & Islamic Education",
+    initials: "AI",
+    photo: "/speakers/abdalla-idris.jpg",
+    bio: "Dr. Abdalla Idris Ali is a pioneering Muslim community leader, Imam, and public speaker who has made tremendous contributions to Islamic education and community cohesion across North America. He holds a PhD in International Relations from the University of Toronto and studied the Islamic sciences in his native Sudan, specializing in Tafsīr, Sharīʿah, and counselling. He founded the first full-time Islamic school in North America, serving as its principal for seventeen years, and currently serves as Senior Community and Religious Advisor at ISNA Canada.",
   },
 ];
 
@@ -97,7 +97,9 @@ function SpeakerAvatar({
 export default function Speakers() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
-  const [featured, ...rest] = speakers;
+  const featuredIdx = useMemo(() => Math.floor(Math.random() * speakers.length), []);
+  const featured = speakers[featuredIdx];
+  const rest = speakers.filter((_, i) => i !== featuredIdx);
 
   return (
     <section className="relative py-16 lg:py-24 bg-grid">
