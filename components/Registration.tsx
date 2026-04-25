@@ -6,7 +6,7 @@ import { useRef, useState } from "react";
 const SQUARE_URL =
   process.env.NEXT_PUBLIC_SQUARE_PAYMENT_URL ?? "https://square.link/u/Hj11PSQv";
 
-const EARLY_BIRD_TOTAL = 70;
+const EARLY_BIRD_TOTAL = 90;
 const EARLY_BIRD_REMAINING = 30;
 const CIRCLE_RADIUS = 44;
 const CIRCUMFERENCE = 2 * Math.PI * CIRCLE_RADIUS;
@@ -19,8 +19,8 @@ const PATHWAY1_OPTIONS = [
     speaker: "Shaykh Adil Mannan",
   },
   {
-    value: "Seerah Through the Lens of the Quran",
-    label: "Seerah Through the Lens of the Quran",
+    value: "Revelation in Real Life",
+    label: "Revelation in Real Life",
     speaker: "Dr. Amjad Qourshah",
   },
 ];
@@ -32,8 +32,8 @@ const PATHWAY2_OPTIONS = [
     speaker: "Dr. Ali Al-Halawani",
   },
   {
-    value: "Khuluq Al-Quran: Character Through the Quran",
-    label: "Khuluq Al-Quran: Character Through the Quran",
+    value: "Quranic Character",
+    label: "Quranic Character",
     speaker: "Shaykh Muhammad Zahid Abu Ghudda",
   },
 ];
@@ -194,13 +194,24 @@ export default function Registration() {
             </div>
 
             <div className="mt-10 pt-8 border-t border-white/5">
-              <div className="flex items-baseline gap-3 mb-1">
-                <span className="text-5xl font-black text-white">$15</span>
-                <span className="text-white/30 text-sm">CAD / person</span>
-              </div>
-              <div className="inline-flex items-center gap-2 bg-blue-500/15 border border-blue-400/25 rounded-full px-3 py-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-                <span className="text-blue-300 text-xs font-medium tracking-wide">Early Bird</span>
+              <div className="flex items-end gap-8 mb-1">
+                <div>
+                  <div className="flex items-baseline gap-3">
+                    <span className="text-5xl font-black text-white">$15</span>
+                    <span className="text-white/30 text-sm">CAD / person</span>
+                  </div>
+                  <div className="inline-flex items-center gap-2 bg-blue-500/15 border border-blue-400/25 rounded-full px-3 py-1 mt-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+                    <span className="text-blue-300 text-xs font-medium tracking-wide">Early Bird</span>
+                  </div>
+                </div>
+                <div className="pb-0.5">
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-3xl font-black text-white/50">$20</span>
+                    <span className="text-white/20 text-sm">CAD / person</span>
+                  </div>
+                  <div className="text-white/30 text-xs mt-1">tSeerah</div>
+                </div>
               </div>
 
               {/* Early Bird Ticket Counter */}
