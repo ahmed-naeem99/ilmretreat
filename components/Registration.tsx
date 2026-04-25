@@ -6,6 +6,12 @@ import { useRef, useState } from "react";
 const SQUARE_URL =
   process.env.NEXT_PUBLIC_SQUARE_PAYMENT_URL ?? "https://square.link/u/Hj11PSQv";
 
+const EARLY_BIRD_TOTAL = 70;
+const EARLY_BIRD_REMAINING = 30;
+const CIRCLE_RADIUS = 44;
+const CIRCUMFERENCE = 2 * Math.PI * CIRCLE_RADIUS;
+const DASH_OFFSET = CIRCUMFERENCE * (1 - EARLY_BIRD_REMAINING / EARLY_BIRD_TOTAL);
+
 const PATHWAY1_OPTIONS = [
   {
     value: "The Eternal Challenge",
@@ -196,6 +202,56 @@ export default function Registration() {
                 <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
                 <span className="text-blue-300 text-xs font-medium tracking-wide">Early Bird</span>
               </div>
+
+              {/* Early Bird Ticket Counter */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="mt-6 flex items-center gap-5 border border-white/8 bg-white/[0.03] rounded-2xl px-5 py-4"
+              >
+                {/* Circle */}
+                <div className="relative w-[88px] h-[88px] shrink-0">
+                  <svg viewBox="0 0 120 120" className="w-full h-full -rotate-90">
+                    <circle
+                      cx="60" cy="60" r={CIRCLE_RADIUS}
+                      fill="none"
+                      stroke="rgba(255,255,255,0.06)"
+                      strokeWidth="9"
+                    />
+                    <motion.circle
+                      cx="60" cy="60" r={CIRCLE_RADIUS}
+                      fill="none"
+                      stroke="#4a9eff"
+                      strokeWidth="9"
+                      strokeLinecap="round"
+                      strokeDasharray={CIRCUMFERENCE}
+                      initial={{ strokeDashoffset: CIRCUMFERENCE }}
+                      animate={inView ? { strokeDashoffset: DASH_OFFSET } : {}}
+                      transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.7 }}
+                    />
+                  </svg>
+                  <div className="absolute inset-0 flex flex-col items-center justify-center">
+                    <span className="text-2xl font-black text-white leading-none">{EARLY_BIRD_REMAINING}</span>
+                    <span className="text-[9px] text-white/40 uppercase tracking-[0.15em] mt-0.5">left</span>
+                  </div>
+                </div>
+                {/* Text */}
+                <div>
+                  <div className="text-white font-semibold text-sm mb-0.5">Early Bird Tickets</div>
+                  <div className="text-white/40 text-xs leading-relaxed">
+                    {EARLY_BIRD_REMAINING} of {EARLY_BIRD_TOTAL} spots remaining
+                  </div>
+                  <div className="mt-2.5 h-1 rounded-full bg-white/5 overflow-hidden w-28">
+                    <motion.div
+                      className="h-full rounded-full bg-blue-400"
+                      initial={{ width: 0 }}
+                      animate={inView ? { width: `${(EARLY_BIRD_REMAINING / EARLY_BIRD_TOTAL) * 100}%` } : {}}
+                      transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
+                    />
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </motion.div>
 

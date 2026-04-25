@@ -9,49 +9,49 @@ const speakers = [
     specialty: "Quran Sciences & Theology",
     initials: "AJ",
     photo: "/speakers/ammar-jakda.jpg",
-    bio: "Shaykh Ammar Jakda, born and raised in Cambridge, ON, memorized the Qur'an in Gujarat, India, before studying at Jamiatul Ilm Wal Huda (UK) and graduating as an 'alim from Nadwatul Ulama in Lucknow, India. He later specialized in Islamic theology and logic in Istanbul, Türkiye. Formerly an instructor at Al Khalil Academy in Toronto, he currently teaches at Tamhid Institute and Wijhah Initiative.",
+    bio: "Cambridge-born hafidh who studied at Jamiatul Ilm Wal Huda (UK), graduated from Nadwatul Ulama in Lucknow, and later specialized in Islamic theology in Istanbul. Currently teaches at Tamhid Institute and Wijhah Initiative.",
   },
   {
     name: "Shaykh Adil Mannan",
     specialty: "Fiqh & Quranic Sciences",
     initials: "AM",
     photo: "/speakers/adil-mannan.jpg",
-    bio: "A graduate of the Islamic University of Madinah in Shariah with a specialization in Fiqh and Usool al-Fiqh, Shaykh Adil holds an Ijazah in Hafs 'an 'Asim and received an Ijazah Aammah through the scholarly circle of Shaykh Dr. Mustafa Makhdoom. He has served Muslim communities across Toronto for over a decade, including Abu Huraira Center and Masjid Omar bin al-Khattab, through youth mentorship, family counselling, and Qur'anic education.",
+    bio: "Graduate of the Islamic University of Madinah in Shariah, specializing in Fiqh and Usool al-Fiqh, with an Ijazah Aammah through the circle of Shaykh Dr. Mustafa Makhdoom. Has served the GTA for over a decade through youth mentorship, family counselling, and Qur'anic education.",
   },
   {
     name: "Dr. Amjad Qourshah",
     specialty: "Tafseer & Comparative Religion",
     initials: "AQ",
     photo: "/speakers/amjad-qourshah.jpg",
-    bio: "Dr. Amjad Qourshah is a renowned Islamic speaker and lecturer born in Jordan in 1967. He holds a Bachelor's in Fundamentals of Jurisprudence and a Master's in Tafseer from the University of Jordan, along with a PhD in Comparative Religious Studies from the University of Birmingham. Fluent in Arabic and English, his accessible approach has drawn wide audiences across over 200 cities worldwide. He currently serves as Resident Scholar at Dar Foundation in Oakville, Ontario.",
+    bio: "Holds a PhD in Comparative Religious Studies from the University of Birmingham and degrees in Tafseer and Usool al-Fiqh from the University of Jordan. A globally recognized lecturer who has spoken in over 200 cities; currently Resident Scholar at Dar Foundation in Oakville.",
   },
   {
     name: "Dr. Ali Al-Halawani",
     specialty: "Quranic Linguistics",
     initials: "AH",
     photo: "/speakers/ali-halawani.jpg",
-    bio: "Dr. Ali Al-Halawani is an educator and linguist with over two decades of experience across Egypt, Malaysia, and Canada. He currently serves as Content Production Manager at the Muslim Association of Canada (MAC) and holds a PhD in English Linguistics and Translation Studies from Al-Azhar University, specializing in Qur'anic collocations, semantics, and religious translation. He has authored three books and translated sixteen, bridging traditional Islamic knowledge with modern linguistic methodologies.",
+    bio: "Holds a PhD in English Linguistics from Al-Azhar University, specializing in Qur'anic semantics and religious translation. Content Production Manager at MAC; has authored three books and translated sixteen, bridging Islamic scholarship with modern linguistics.",
   },
   {
     name: "Shaykh Muhammad Zahid Abu Ghudda",
     specialty: "Fiqh, Hadith & Akhlaq",
     initials: "MZ",
     photo: "/speakers/muhammad-zahid.jpg",
-    bio: "Shaykh Mohammad Zahid Abu Ghudda is the eldest son of the late Shaykh 'Abd al-Fattāḥ Abu Ghudda, widely recognized as one of the leading Muslim scholars of the 20th century, under whom he studied the Islamic sciences extensively. His lectures span Fiqh, Ḥadith, Akhlaq, Ulum al-Qur'an, and History. He is a frequent khateeb across the GTA, has authored and translated several books in Arabic and English, holds an MBA from the University of Toronto, and has resided in Canada since 1991.",
+    bio: "Eldest son of the late Shaykh 'Abd al-Fattāḥ Abu Ghudda, under whom he studied the Islamic sciences extensively. A frequent GTA khateeb lecturing on Fiqh, Hadith, Akhlaq, and Qur'anic sciences; also holds an MBA from the University of Toronto.",
   },
   {
     name: "Ustadh Syed Hassan",
     specialty: "Exegesis & Hanafi Fiqh",
     initials: "SH",
     photo: "/speakers/syed-hassan.jpg",
-    bio: "Ustadh Syed Hassan was raised in Toronto and studied Theoretical Mathematics at the University of Waterloo before pursuing traditional Islamic studies. He studied at Cambridge Islamic College under Shaykh Muhammad Akram Nadwi, specializing in exegesis and Hanafi fiqh. He currently serves as Curriculum Lead and Vice-Principal at AlHuda Secondary School and has served the GTA community through khutbahs and seminars since 2012.",
+    bio: "Studied at Cambridge Islamic College under Shaykh Muhammad Akram Nadwi, specializing in exegesis and Hanafi Fiqh, after studying Mathematics at the University of Waterloo. Serves as Vice-Principal at AlHuda Secondary School and has been active in the GTA community since 2012.",
   },
   {
     name: "Dr. Abdalla Idris Ali",
     specialty: "Tafsir & Islamic Education",
     initials: "AI",
     photo: "/speakers/abdalla-idris.jpg",
-    bio: "Dr. Abdalla Idris Ali is a pioneering Muslim community leader, Imam, and public speaker who has made tremendous contributions to Islamic education and community cohesion across North America. He holds a PhD in International Relations from the University of Toronto and studied the Islamic sciences in his native Sudan, specializing in Tafsīr, Sharīʿah, and counselling. He founded the first full-time Islamic school in North America, serving as its principal for seventeen years, and currently serves as Senior Community and Religious Advisor at ISNA Canada.",
+    bio: "Holds a PhD in International Relations from the University of Toronto and studied Tafsīr and Sharīʿah in Sudan. Founded the first full-time Islamic school in North America and currently serves as Senior Community and Religious Advisor at ISNA Canada.",
   },
 ];
 
@@ -163,7 +163,7 @@ export default function Speakers() {
                   <span className="text-xs text-white/30 border border-white/10 px-2 py-0.5 rounded-full mt-1 inline-block">{speaker.specialty}</span>
                 </div>
               </div>
-              <p className="text-white/40 text-xs leading-relaxed line-clamp-4">{speaker.bio}</p>
+              <p className="text-white/40 text-xs leading-relaxed">{speaker.bio}</p>
             </motion.div>
           ))}
         </div>
