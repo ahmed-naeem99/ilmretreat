@@ -120,6 +120,10 @@ export default function Registration() {
       return;
     }
 
+    // Open the window synchronously inside the user gesture so popup blockers don't fire.
+    // After the fetch we redirect it; if it got blocked we fall back to same-tab navigation.
+    const paymentWindow = window.open("", "_blank");
+
     setLoading(true);
     try {
       const res = await fetch("/api/register", {
@@ -129,12 +133,18 @@ export default function Registration() {
       });
       const data = await res.json();
       if (!res.ok) {
+        paymentWindow?.close();
         setError(data.error ?? "Something went wrong. Please try again.");
       } else {
-        window.open(SQUARE_URL, "_blank");
+        if (paymentWindow) {
+          paymentWindow.location.href = SQUARE_URL;
+        } else {
+          window.location.href = SQUARE_URL;
+        }
         setSubmitted(true);
       }
     } catch {
+      paymentWindow?.close();
       setError("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
@@ -293,9 +303,17 @@ export default function Registration() {
                     </h3>
                     <p className="text-white/50 text-sm leading-relaxed max-w-xs">
                       Your registration is saved. Complete your{" "}
-                      <span className="text-white/80 font-medium">$15 payment</span> in the tab that just opened to confirm your spot for{" "}
+                      <span className="text-white/80 font-medium">$15 payment</span> in the payment tab to confirm your spot for{" "}
                       <span className="text-white/80 font-medium">May 3rd</span>, inshaAllah.
                     </p>
+                    <a
+                      href={SQUARE_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-blue-500 hover:bg-blue-400 text-white font-bold py-3 px-6 rounded-xl transition-colors duration-200 text-sm"
+                    >
+                      Complete Payment →
+                    </a>
                   </div>
                   <div className="w-full border border-white/5 rounded-xl px-4 py-4 text-left">
                     <div className="text-white/50 font-medium mb-3 text-sm">Your pathway selections:</div>
