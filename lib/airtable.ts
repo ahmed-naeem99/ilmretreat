@@ -19,7 +19,7 @@ export async function checkEmailExists(email: string): Promise<boolean> {
     { headers: { Authorization: `Bearer ${apiKey}` } }
   );
 
-  if (!res.ok) return false;
+  if (!res.ok) throw new Error(`Airtable check failed: ${res.status}`);
   const data = await res.json();
   return (data.records ?? []).length > 0;
 }
