@@ -24,7 +24,12 @@ export async function POST(req: NextRequest) {
 
     inFlight.add(email);
     try {
-      const alreadyRegistered = await checkEmailExists(email);
+      let alreadyRegistered = false;
+      try {
+        alreadyRegistered = await checkEmailExists(email);
+      } catch (checkErr) {
+        console.warn("Airtable duplicate check failed, skipping:", checkErr);
+      }
       if (alreadyRegistered) {
         return NextResponse.json(
           { error: "This email is already registered. If you have questions, please contact us." },
