@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import PurposeSection from "@/components/PurposeSection";
 import InfoSection from "@/components/InfoSection";
 import Speakers from "@/components/Speakers";
+import Sponsors from "@/components/Sponsors";
 import Registration from "@/components/Registration";
 import Footer from "@/components/Footer";
 
@@ -12,7 +13,7 @@ export default function Home() {
       <PurposeSection />
       <InfoSection />
       <Speakers />
-      {/* Sponsors hidden until confirmed */}
+      <Sponsors />
       <Registration />
       <Footer />
     </main>
